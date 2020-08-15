@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkestBlue">
+
+    <ImageView
+        android:id="@+id/info_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:padding="8dp"
+        android:src="@drawable/info_main_view_controller"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/work_place_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/cayanSelection"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_icon"
+        tools:text="DESCRIPTION" />
+
+    <TextView
+        android:id="@+id/shift_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/cayanSelection"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/work_place_description" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shift_start"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="animation.json"
+        app:lottie_loop="true" />
+
+
+    <at.grabner.circleprogress.CircleProgressView
+        android:id="@+id/progress_circular"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="70dp"
+        android:background="@android:color/transparent"
+        app:cpv_barColor="@color/transparent"
+        app:cpv_barStrokeCap="Round"
+        app:cpv_barWidth="8dp"
+        app:cpv_fillColor="@color/darkestBlue"
+        app:cpv_innerContourColor="@color/transparent"
+        app:cpv_outerContourColor="@color/transparent"
+        app:cpv_rimColor="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shift_start" />
+
+
+    <LinearLayout
+        android:id="@+id/enter_shift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/progress_circular"
+        app:layout_constraintEnd_toEndOf="@id/progress_circular"
+        app:layout_constraintStart_toStartOf="@id/progress_circular"
+        app:layout_constraintTop_toTopOf="@id/progress_circular">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/fingerprint_new" />
+
+        <TextView
+            android:id="@+id/click_instruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/slick_long_for_enter"
+            android:textColor="@color/cayanSelection" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/exit_shift"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/progress_circular"
+        app:layout_constraintEnd_toEndOf="@id/progress_circular"
+        app:layout_constraintStart_toStartOf="@id/progress_circular"
+        app:layout_constraintTop_toTopOf="@id/progress_circular">
+
+        <TextView
+            android:id="@+id/time_in_shift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/cayanSelection"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="CURRENT SHIFT" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

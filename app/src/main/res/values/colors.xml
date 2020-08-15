@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#030640</color>
+    <color name="colorPrimaryDark">#030640</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="cayanSelection">#00D3FC</color>
+    <color name="mainCayan">#03DAC5</color>
+    <color name="darkestBlue">#030640</color>
+
+
+
+<!--    <color name="colorPrimary">#030668</color>-->
+<!--    <color name="colorPrimaryDark">#030640</color>-->
+<!--    <color name="colorAccent">#030668</color>-->
+    <color name="windowBackground">#313248</color>
+    <color name="white">#ffffff</color>
+    <color name="primary_light_green">#03ffcd</color>
+    <color name="primary_light_blue">#00d3fc</color>
+    <color name="primary_darkest_blue">#191b33</color>
+
+    <color name="blue_button_color">#3498DB</color>
+    <color name="list_divider">#E7E7E7</color>
+
+    <color name="black">#000000</color>
+    <color name="dark_grey">#6F7F80</color>
+    <color name="medium_grey">#95A5A6</color>
+    <color name="light_grey">#ECF0F1</color>
+    <color name="super_light_grey">#F5F8FA</color>
+    <color name="alt_grey">#D5DFE2</color>
+
+    <color name="divider">#1f000000</color>
+    <color name="restaurant_depot_color">#2156AA</color>
+
+    <color name="banner_blue">#FF0044AE</color>
+    <color name="banner_red">#FFE34E42</color>
+    <color name="banner_gray">#FF6F7F80</color>
+
+    <!-- App Primary Text Colors (might be deprecated). -->
+    <color name="app_body_text_1">#de000000</color>
+    <color name="app_body_text_2">#8a000000</color>
+    <color name="app_body_text_1_inverse">#deffffff</color>
+    <color name="flat_button_text">#ff0097a7</color>
+
+    <array name="payment_list_section_colors">
+        <item>@color/primary_blue</item>
+        <item>@color/medium_grey</item>
+    </array>
+
+    <!-- Vendor resources -->
+    <color name="restaurant_depot_main_color">#003680</color>
+    <color name="sams_club_main_color">#00498F</color>
+    <color name="stanley_produce_main_color">#016334</color>
+    <color name="gather_meats_main_color">#F05E35</color>
+    <color name="all_seas_main_color">#06207D</color>
+    <color name="smart_foodservice_main_color">#2C2D2E</color>
+    <color name="default_vendor_main_color">#3F4647</color>
+
+    <!-- Invoice & Credit resources -->
+    <color name="invoice_signed">#2D2E80</color>
+    <color name="invoice_pending">#063E32</color>
+    <color name="invoice_failed">#E74C3C</color>
+    <color name="invoice_partially_paid">#E74C3C</color>
+    <color name="invoice_paid">#A4D19F</color>
+    <color name="invoice_cancelled">#95A5A6</color>
+    <color name="credit_outstanding">#2ECC71</color>
+    <color name="vertical_line">#D5DFE2</color>
+    <color name="bullet_divider">#D5DFE2</color>
+
+    <!-- New StyleGuide -->
+    <color name="pale_gray">#E4E4E4</color>
+    <color name="primary_gray">#808080</color>
+    <color name="secondary_gray">#C3C3C3</color>
+    <color name="validation_error">#EE4F63</color>
+    <color name="toolbar_control_highlight">#EDEDED</color>
+    <color name="primary_black">#404040</color>
+    <color name="primary_blue">#030668</color>
+    <color name="disabled_blue">#CDCDE1</color>
+    <color name="ripple_blue">#686AA5</color>
+    <color name="primary_blue_dark">#030640</color>
+    <color name="primary_beige">#EDCFB6</color>
+    <color name="primary_orange">#FE6413</color>
+    <color name="ripple_beige">#B8A08D</color>
+    <color name="separator">#F5F5F5</color>
+    <color name="snackbar">#CC09026D</color>
+    <color name="primary_purple">#676AA7</color>
+    <color name="primary_red">#C71714</color>
+
+    <color name="banner_color">#ffa200</color>
+    <color name="timer_grey">#F5F5F5</color>
+    <color name="timer_text_purple">#BAB9E5</color>
+    <color name="timer_green_turquize">#0EF4D9</color>
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">אחראי משמרת</string>
+    <string name="item">Item</string>
+    <string name="not_in_shift">לא במשמרת</string>
+    <string name="slick_long_for_enter">לחיצה ארוכה לכניסה</string>
+    <string name="time_format">%1s:%2s:%3s</string>
+    <string name="entry_time">שעת כניסה: %1s</string>
+    <string name="suggest_improvements">הצעות לשיפורים</string>
+    <string name="share_this_app">שתפו את אחראי משמרת</string>
+    <string name="like_us_share_us">אוהבים אותנו? תראו את זה!</string>
+    <string name="remove_ads">הסרת פרסומות</string>
+    <string name="purchase_recovery">שחזור רכישה</string>
+</resources>
