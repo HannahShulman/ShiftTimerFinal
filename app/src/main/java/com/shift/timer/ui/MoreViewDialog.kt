@@ -47,7 +47,6 @@ class MoreViewDialog : DialogFragment(), Dismissible {
         return view
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.closeBtn.throttledClickListener {

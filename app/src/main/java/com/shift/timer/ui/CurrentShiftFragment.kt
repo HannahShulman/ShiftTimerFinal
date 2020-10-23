@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.format.DateUtils
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -24,13 +22,16 @@ import com.shift.timer.SpContract
 import com.shift.timer.animations.RevealAnimationSetting
 import com.shift.timer.databinding.FragmentCurrentShiftBinding
 import com.shift.timer.db.ShiftDao
+import com.shift.timer.db.WageSettingDao
 import com.shift.timer.db.WorkplaceDao
 import com.shift.timer.di.DaggerInjectHelper
 import com.shift.timer.model.Shift
 import com.shift.timer.model.Workplace
+import com.shift.timer.model.totalTimeInMinutes
 import com.shift.timer.throttledClickListener
 import com.shift.timer.viewBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -48,6 +49,8 @@ class CurrentShiftFragment : Fragment(R.layout.fragment_current_shift) {
     private val currentShiftViewModel: CurrentShiftViewModel by viewModels { factory }
 
     private var timeInShift = MutableStateFlow<Long?>(null)//count seconds
+
+    private var shiftStateObserver = MutableStateFlow<ShiftStates?>(null)
 
 //    private var currentWorkplace = currentShiftViewModel.selectedWorkplace//MutableStateFlow(Workplace(description = "first working place"))
 
@@ -70,9 +73,6 @@ class CurrentShiftFragment : Fragment(R.layout.fragment_current_shift) {
         super.onViewCreated(view, savedInstanceState)
         setObservers()
         settUI()
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            setUserInteraction()
-        }
     }
 
     //UI
@@ -80,18 +80,25 @@ class CurrentShiftFragment : Fragment(R.layout.fragment_current_shift) {
     private fun settUI() {
 
         binding.infoIcon.throttledClickListener {
-            MoreViewDialog.newInstance(constructRevealSettings()).show(parentFragmentManager, MoreViewDialog::class.java.name)
+            activity?.let {
+                MoreViewDialog.newInstance(constructMoreViewDialogRevealSettings())
+                    .show(it.supportFragmentManager, MoreViewDialog::class.java.name)
+            }
         }
 
         binding.progressCircular.isShowTextWhileSpinning = false
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            binding.progressCircular.setBarColor(resources.getColor(R.color.cayanSelection, null),
+            binding.progressCircular.setBarColor(
+                resources.getColor(R.color.cayanSelection, null),
                 resources.getColor(R.color.mainCayan, null),
-                resources.getColor(R.color.cayanSelection, null))
+                resources.getColor(R.color.cayanSelection, null)
+            )
         } else {
-            binding.progressCircular.setBarColor(resources.getColor(R.color.cayanSelection),
+            binding.progressCircular.setBarColor(
+                resources.getColor(R.color.cayanSelection),
                 resources.getColor(R.color.mainCayan),
-                resources.getColor(R.color.cayanSelection))
+                resources.getColor(R.color.cayanSelection)
+            )
         }
 
         var lastProgressValue = 0F
@@ -111,20 +118,12 @@ class CurrentShiftFragment : Fragment(R.layout.fragment_current_shift) {
                         } else if (value == 0F) {
                             currentShiftViewModel.currentShift.take(1).collect {
                                 it?.let { exitShift(it) }
+
                             }
                         }
                     }
                 }
-                AnimationState.SPINNING -> {
-                }
-                AnimationState.END_SPINNING -> {
-                }
-                AnimationState.END_SPINNING_START_ANIMATING -> {
-                }
-                AnimationState.START_ANIMATING_AFTER_SPINNING -> {
-                }
-                AnimationState.ANIMATING, null -> {
-                }
+                else -> { }
             }
 
         }
@@ -154,14 +153,40 @@ class CurrentShiftFragment : Fragment(R.layout.fragment_current_shift) {
         observeWorkplace()
         observeCurrentShift()
         observeTimeInShift()
+        viewLifecycleOwner.lifecycleScope.launch {
+            shiftStateObserver.collect {
+                when (it) {
+                    is ENTRY -> {
+                    }
+                    is EXIT -> {
+                        CompletedShiftFragment.newInstance(
+                            it.shiftId,
+                            constructShiftCompletionDialogRevealSettings()
+                        ).show(parentFragmentManager, CompletedShiftFragment::class.java.name)
+                    }
+                    null -> {
+                    }
+                }
+            }
+        }
     }
 
-    private fun constructRevealSettings(): RevealAnimationSetting? {
+    private fun constructMoreViewDialogRevealSettings(): RevealAnimationSetting? {
         return RevealAnimationSetting.with(
             (binding.infoIcon.x + binding.infoIcon.width / 2).toInt(),
             (binding.infoIcon.y + binding.infoIcon.height / 2).toInt(),
             view?.width ?: 0,
-            view?.height ?: 0)
+            view?.height ?: 0
+        )
+    }
+
+    private fun constructShiftCompletionDialogRevealSettings(): RevealAnimationSetting? {
+        return RevealAnimationSetting.with(
+            (binding.progressCircular.x + binding.progressCircular.width / 2).toInt(),
+            (binding.progressCircular.y + binding.progressCircular.height / 2).toInt(),
+            view?.width ?: 0,
+            view?.height ?: 0
+        )
     }
 
     private fun observeWorkplace() {
@@ -187,16 +212,17 @@ class CurrentShiftFragment : Fragment(R.layout.fragment_current_shift) {
         }
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             currentShiftViewModel.currentShift.collect { shift ->
-                Log.d("TAG", "observeCurrentShift: $shift")
                 binding.animation.isVisible = shift != null
                 binding.exitShift.isVisible = shift != null
                 binding.enterShift.isVisible = shift == null
                 shift?.let {
                     binding.enterShift.clearAnimation()
                     binding.progressCircular.setText(it.start.toString())
-                    binding.shiftStart.text = getString(R.string.entry_time, hourMinuteDateFormat.format(it.start))
+                    binding.shiftStart.text =
+                        getString(R.string.entry_time, hourMinuteDateFormat.format(it.start))
                     timer.cancel()//ensure to block multiple processes of timer
-                    timeInShift.value = Date().time.minus(it.start.time).div(1000)//convert to seconds
+                    timeInShift.value =
+                        Date().time.minus(it.start.time).div(1000)//convert to seconds
                     timer.start()
                 } ?: run {
                     val anim = AnimationUtils.loadAnimation(context, R.anim.fade_in)
@@ -225,10 +251,6 @@ class CurrentShiftFragment : Fragment(R.layout.fragment_current_shift) {
         }
     }
 
-    //Interaction
-    private fun setUserInteraction() {
-    }
-
     //functionality
     private suspend fun enterShift() {
         currentShiftViewModel.enterShift()
@@ -236,19 +258,26 @@ class CurrentShiftFragment : Fragment(R.layout.fragment_current_shift) {
 
     private suspend fun exitShift(shift: Shift) {
         currentShiftViewModel.endShift(shift)
+        //display end shift dialog
+        shiftStateObserver.value = EXIT(shift.id)
+
     }
 
     private fun Long.formattedTimeInShift(): String {
         val seconds = this % 60
         val minutes = (this / 60) % 60
         val hours = (this / 60) / 60
-        return getString(R.string.time_format, String.format("%02d", hours),
-            String.format("%02d", minutes), String.format("%02d", seconds))
+        return getString(
+            R.string.time_format, String.format("%02d", hours),
+            String.format("%02d", minutes), String.format("%02d", seconds)
+        )
     }
 }
 
-
-class CurrentShiftViewModel(val repository: ShiftRepository, val workplaceRepository: WorkplaceRepository) : ViewModel() {
+class CurrentShiftViewModel(
+    private val repository: ShiftRepository,
+    private val workplaceRepository: WorkplaceRepository
+) : ViewModel() {
 
     suspend fun enterShift() {
         repository.startShift()
@@ -266,13 +295,17 @@ class CurrentShiftViewModel(val repository: ShiftRepository, val workplaceReposi
 
     val shiftLengthInSeconds = MutableStateFlow(9.times(60).times(60))
 
-    val selectedWorkplace: Flow<Workplace> = workplaceRepository.selectedWorkplace()//workplaceId.flatMapLatest { workplaceRepository.selectedWorkplace(it)?: MutableStateFlow(Workplace(description = "no workplace found") )}
+    val selectedWorkplace: Flow<Workplace> = workplaceRepository.selectedWorkplace()
 
+    fun getShiftById(id: Int): Flow<Shift> {
+        return repository.getShiftById(id)
+    }
 }
 
-class CurrentShiftViewModelFactory @Inject constructor(private val repository: ShiftRepository,
-                                                       private val workplaceRepository: WorkplaceRepository)
-    : ViewModelProvider.Factory {
+class CurrentShiftViewModelFactory @Inject constructor(
+    private val repository: ShiftRepository,
+    private val workplaceRepository: WorkplaceRepository
+) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -280,30 +313,53 @@ class CurrentShiftViewModelFactory @Inject constructor(private val repository: S
     }
 }
 
-class ShiftRepository @Inject constructor(private val spContract: SpContract,
-                                          private val shiftDao: ShiftDao) {
+class ShiftRepository @Inject constructor(
+    private val spContract: SpContract,
+    private val shiftDao: ShiftDao,
+    private val wageSettingDao: WageSettingDao
+) {
 
     suspend fun startShift() {
-        shiftDao.insertShift(Shift(workplaceId = spContract.workplaceId, start = Date(), end = null))
+        shiftDao.insertShift(
+            Shift(
+                workplaceId = spContract.workplaceId,
+                start = Date(),
+                end = null,
+                payment = 0
+            )
+        )
     }
 
-
     suspend fun endShift(shift: Shift) {
-        shift.copy(end = Date()).also {
-            shiftDao.endShift(it)
+        val endTime = Date()
+        GlobalScope.launch {
+            val wage = wageSettingDao.getWorkplaceById(spContract.workplaceId)
+            val paymentForShift = (wage.wage.div(60.00).toLong()).times(shift.totalTimeInMinutes())
+            shift.copy(end = endTime, payment = paymentForShift).also {
+                shiftDao.endShift(it)
+            }
         }
+    }
 
+    fun getShiftById(id: Int): Flow<Shift> {
+        return shiftDao.getShiftById(id)
     }
 
     val getCurrentShift = shiftDao.getCurrentShift()
 }
 
-class WorkplaceRepository @Inject constructor(private val spContract: SpContract, private val workplaceDao: WorkplaceDao) {
+class WorkplaceRepository @Inject constructor(
+    private val spContract: SpContract,
+    private val workplaceDao: WorkplaceDao
+) {
 
     val workplaces = workplaceDao.getAllWorkplaces()
 
     fun selectedWorkplace(): Flow<Workplace> {
         return workplaceDao.getWorkplaceById(spContract.workplaceId)
     }
-
 }
+
+sealed class ShiftStates
+object ENTRY : ShiftStates()
+data class EXIT(val shiftId: Int) : ShiftStates()

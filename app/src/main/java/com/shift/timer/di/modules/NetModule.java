@@ -18,6 +18,7 @@ import com.shift.timer.MainApplication;
 import com.shift.timer.SpContract;
 import com.shift.timer.db.AppDB;
 import com.shift.timer.db.ShiftDao;
+import com.shift.timer.db.WageSettingDao;
 import com.shift.timer.db.WorkplaceDao;
 import com.shift.timer.ui.ShiftRepository;
 import com.shift.timer.ui.WorkplaceRepository;
@@ -82,15 +83,13 @@ public class NetModule {
                 values.put("id", -1);
                 values.put("description", "עבודה 1");
                 db.insert("workplace", OnConflictStrategy.REPLACE, values);
-            }
 
-            @Override
-            public void onOpen(@NonNull SupportSQLiteDatabase db) {
-                super.onOpen(db);
-                ContentValues values = new ContentValues();
-                values.put("id", 3);
-                values.put("description", "עבודה 1");
-                db.insert("workplace", OnConflictStrategy.REPLACE, values);
+                db.execSQL("CREATE TABLE IF NOT EXISTS `WageSetting` (`id` INTEGER NOT NULL, `wage` INTEGER NOT NULL, `workplaceId` INTEGER NOT NULL, PRIMARY KEY(`id`))");
+                ContentValues wageValue = new ContentValues();
+                wageValue.put("id", -1);
+                wageValue.put("wage", 3000);
+                wageValue.put("workplaceId", -1);
+                db.insert("WageSetting", OnConflictStrategy.REPLACE, wageValue);
             }
         }).build();
     }
@@ -109,8 +108,14 @@ public class NetModule {
 
     @Provides
     @Singleton
-    ShiftRepository provideShiftRepository(SpContract spContract, ShiftDao shiftDao, WorkplaceDao workplaceDao) {
-        return new ShiftRepository(spContract, shiftDao);
+    WageSettingDao provideWageSettingDao(AppDB db) {
+        return db.wageSettingDao();
+    }
+
+    @Provides
+    @Singleton
+    ShiftRepository provideShiftRepository(SpContract spContract, ShiftDao shiftDao, WageSettingDao wageSettingDao) {
+        return new ShiftRepository(spContract, shiftDao, wageSettingDao);
     }
 
     @Provides

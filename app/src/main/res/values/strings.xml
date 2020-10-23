@@ -10,4 +10,15 @@
     <string name="like_us_share_us">אוהבים אותנו? תראו את זה!</string>
     <string name="remove_ads">הסרת פרסומות</string>
     <string name="purchase_recovery">שחזור רכישה</string>
+    <string name="workplace_settings">הגדרות עבודה</string>
+    <string name="current_shift">משמרת נוכחית</string>
+    <string name="shifts">משמרות</string>
+    <string name="entry">כניסה</string>
+    <string name="exit">יציאה</string>
+    <string name="rate">תעריף</string>
+    <string name="total_payment">%s ₪</string>
+    <string name="total_time">%s דקות</string>
+    <string name="rate_percent">%d\%%</string>
+    <string name="edit">ערוך</string>
+    <string name="total_time_desc_text">סה\"כ</string>
 </resources>
