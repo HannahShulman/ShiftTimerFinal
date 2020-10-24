@@ -25,6 +25,9 @@ interface ShiftDao {
 
     @Update
     suspend fun endShift(shift: Shift): Int
+
+    @Query("UPDATE shift SET rate =:rate, note =:note, bonus=:bonus,  start = :start, `end` = :end  WHERE id =:id")
+    suspend fun updateShift(id: Int, start: Long, end: Long?, rate: Int, note: String, bonus: Int);
 }
 
 @Dao

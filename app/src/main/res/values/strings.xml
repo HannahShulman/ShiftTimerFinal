@@ -21,4 +21,8 @@
     <string name="rate_percent">%d\%%</string>
     <string name="edit">ערוך</string>
     <string name="total_time_desc_text">סה\"כ</string>
+    <string name="save">שמור</string>
+    <string name="cancel">ביטול</string>
+    <string name="bonus">בונוס</string>
+    <string name="add_your_note">Add your note</string>
 </resources>

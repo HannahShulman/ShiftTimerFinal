@@ -27,9 +27,9 @@ import com.shift.timer.db.WorkplaceDao
 import com.shift.timer.di.DaggerInjectHelper
 import com.shift.timer.model.Shift
 import com.shift.timer.model.Workplace
-import com.shift.timer.model.totalTimeInMinutes
 import com.shift.timer.throttledClickListener
 import com.shift.timer.viewBinding
+import com.shift.timer.viewmodels.EditShiftData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -123,7 +123,8 @@ class CurrentShiftFragment : Fragment(R.layout.fragment_current_shift) {
                         }
                     }
                 }
-                else -> { }
+                else -> {
+                }
             }
 
         }
@@ -320,22 +321,24 @@ class ShiftRepository @Inject constructor(
 ) {
 
     suspend fun startShift() {
-        shiftDao.insertShift(
-            Shift(
-                workplaceId = spContract.workplaceId,
-                start = Date(),
-                end = null,
-                payment = 0
+        GlobalScope.launch {
+            val wage = wageSettingDao.getWorkplaceById(spContract.workplaceId)
+            val paymentForHourShift = wage.wage//per hour cents
+            shiftDao.insertShift(
+                Shift(
+                    workplaceId = spContract.workplaceId,
+                    start = Date(),
+                    end = null,
+                    payment = paymentForHourShift.toLong()
+                )
             )
-        )
+        }
     }
 
     suspend fun endShift(shift: Shift) {
         val endTime = Date()
         GlobalScope.launch {
-            val wage = wageSettingDao.getWorkplaceById(spContract.workplaceId)
-            val paymentForShift = (wage.wage.div(60.00).toLong()).times(shift.totalTimeInMinutes())
-            shift.copy(end = endTime, payment = paymentForShift).also {
+            shift.copy(end = endTime).also {
                 shiftDao.endShift(it)
             }
         }
@@ -343,6 +346,17 @@ class ShiftRepository @Inject constructor(
 
     fun getShiftById(id: Int): Flow<Shift> {
         return shiftDao.getShiftById(id)
+    }
+
+    suspend fun updateShiftData(data: EditShiftData) {
+        return shiftDao.updateShift(
+            data.id,
+            data.start.time,
+            data.end.time,
+            data.rate,
+            data.note,
+            data.bonus
+        )
     }
 
     val getCurrentShift = shiftDao.getCurrentShift()

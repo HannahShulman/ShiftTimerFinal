@@ -1,9 +1,11 @@
 package com.shift.timer.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -13,8 +15,6 @@ import androidx.dynamicanimation.animation.SpringForce
 import androidx.dynamicanimation.animation.withSpringForceProperties
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.shift.timer.R
 import com.shift.timer.animations.AnimationFinishedListener
@@ -23,13 +23,12 @@ import com.shift.timer.animations.Dismissible
 import com.shift.timer.animations.RevealAnimationSetting
 import com.shift.timer.databinding.FragmentCompletedShiftBinding
 import com.shift.timer.di.DaggerInjectHelper
-import com.shift.timer.model.Shift
 import com.shift.timer.model.totalTimeInMinutes
 import com.shift.timer.throttledClickListener
 import com.shift.timer.viewBinding
-import kotlinx.coroutines.flow.Flow
+import com.shift.timer.viewmodels.CompletedShiftViewModel
+import com.shift.timer.viewmodels.CompletedShiftViewModelFactory
 import kotlinx.coroutines.flow.collect
-import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -82,18 +81,17 @@ class CompletedShiftFragment : DialogFragment(), Dismissible {
                     binding.totalTimeValue.text =
                         getString(R.string.total_time, it.totalTimeInMinutes().toString())
                     binding.totalPaymentValue.text = getString(
-                        R.string.total_payment,
-                        String.format(Locale.getDefault(), "%.2f", it.payment.div(100.0).toFloat())
-                    )
+                        R.string.total_payment, it.getPaymentDisplay)
+//                    )
                 }
             }
         }
 
         binding.editShift.throttledClickListener {
-            EditShiftFragment().show(
-                parentFragmentManager,
-                EditShiftFragment::class.java.name
-            )
+            val dialog = EditShiftFragment()
+            dialog.arguments = bundleOf("id" to requireArguments().getInt("shift_id"))
+            dialog.setTargetFragment(this, 123)
+            dialog.show(parentFragmentManager, EditShiftFragment::class.java.name)
         }
 
         binding.okButton.throttledClickListener {
@@ -151,24 +149,11 @@ class CompletedShiftFragment : DialogFragment(), Dismissible {
                 }
             })
     }
-}
 
-
-class CompletedShiftViewModel(
-    private val repository: ShiftRepository,
-    val workplaceRepository: WorkplaceRepository
-) : ViewModel() {
-
-    fun getShiftById(id: Int): Flow<Shift> = repository.getShiftById(id)
-}
-
-class CompletedShiftViewModelFactory @Inject constructor(
-    private val repository: ShiftRepository,
-    private val workplaceRepository: WorkplaceRepository
-) : ViewModelProvider.Factory {
-
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return CompletedShiftViewModel(repository, workplaceRepository) as T
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            123 -> Toast.makeText(requireContext(), "This was an edit", Toast.LENGTH_SHORT).show()
+        }
     }
 }

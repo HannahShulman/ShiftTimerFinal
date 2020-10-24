@@ -188,7 +188,7 @@ dependencies {
     implementation 'com.github.arimorty:floatingsearchview:2.1.1'
 
     implementation 'com.google.android:flexbox:1.0.0'
-    implementation "androidx.exifinterface:exifinterface:1.1.0"
+    implementation "androidx.exifinterface:exifinterface:1.3.1"
 
     // Branch
     implementation 'io.branch.sdk.android:library:2.19.0'
@@ -226,10 +226,8 @@ dependencies {
     //expandable list
     implementation 'com.github.florent37:expansionpanel:1.2.2'
 
-    // For viewing db in broswer
-    implementation 'com.facebook.stetho:stetho:1.5.1'
 
-    implementation 'com.google.android.play:core:1.6.3'
+    implementation 'com.google.android.play:core:1.8.2'
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8"
@@ -257,8 +255,8 @@ dependencies {
     implementation 'nl.dionsegijn:konfetti:1.1.3'
 
     //sms automatic verification
-    implementation 'com.google.android.gms:play-services-auth:18.0.0'
-    implementation 'com.google.android.gms:play-services-auth-api-phone:17.4.0'
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.5.0'
 
     // Testing Fragments in Isolation
     //noinspection FragmentGradleConfiguration
@@ -274,4 +272,7 @@ dependencies {
 
     //progress bar
     implementation 'com.github.jakob-grabner:Circle-Progress-View:1.4'
+
+    implementation 'com.github.florent37:singledateandtimepicker:2.2.7'
+    implementation 'info.hoang8f:android-segmented:1.0.6'
 }
