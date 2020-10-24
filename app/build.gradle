@@ -275,4 +275,8 @@ dependencies {
 
     implementation 'com.github.florent37:singledateandtimepicker:2.2.7'
     implementation 'info.hoang8f:android-segmented:1.0.6'
+    implementation 'com.timehop.stickyheadersrecyclerview:library:0.4.3'
+    implementation 'com.shuhart.stickyheader:stickyheader:1.0.6'
+    implementation 'cn.aigestudio.wheelpicker:WheelPicker:1.1.3'
+
 }

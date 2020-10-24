@@ -6,6 +6,8 @@ import com.shift.timer.di.scope.FragmentScoped;
 import com.shift.timer.ui.CompletedShiftFragment;
 import com.shift.timer.ui.CurrentShiftFragment;
 import com.shift.timer.ui.EditShiftFragment;
+import com.shift.timer.ui.HourlyPaymentSettingFragment;
+import com.shift.timer.ui.SettingsFragment;
 
 import dagger.Component;
 import dagger.Module;
@@ -20,5 +22,7 @@ public abstract class OrderGuideComponent {
 
     public abstract void inject(CurrentShiftFragment fragment);
     public abstract void inject(EditShiftFragment fragment);
+    public abstract void inject(SettingsFragment fragment);
     public abstract void inject(CompletedShiftFragment fragment);
+    public abstract void inject(HourlyPaymentSettingFragment fragment);
 }

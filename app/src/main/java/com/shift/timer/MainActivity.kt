@@ -76,6 +76,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun MenuItem.fragmentTagById(): String = when (itemId) {
         R.id.current_shift -> "Current Shift"
+        R.id.settings -> "settings"
+        R.id.shifts -> "shifts"
         else -> ""
     }
 

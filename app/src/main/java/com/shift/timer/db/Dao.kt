@@ -53,4 +53,45 @@ interface WageSettingDao {
     @Query("SELECT * FROM WageSetting WHERE id =:id")
     fun getWorkplaceById(id: Int): WageSetting
 
+    @Query("SELECT wage FROM WageSetting WHERE workplaceId =:workplaceId ")
+    fun getHourlyPayment(workplaceId: Int): Flow<Int>
+
+    @Query("UPDATE wagesetting SET  wage=:cents WHERE id =:workplaceId")
+    suspend fun setHourlyPayment(workplaceId: Int, cents: Int)
+
+}
+@Dao
+interface AdditionalHoursSettingDao {
+
+    @Insert(onConflict = REPLACE)
+    suspend fun insertWageSetting(wage: WageSetting)
+
+    @Query("SELECT * FROM WageSetting WHERE id =:id")
+    fun getWorkplaceById(id: Int): WageSetting
+
+    //minutes above limited will be calculated with higher rates
+    @Query("SELECT regularRateMinutes FROM AdditionalHoursSetting WHERE workplaceId =:workplaceId ")
+    fun getLimitedMinutesForRegularPayment(workplaceId: Int): Flow<Int>
+}
+@Dao
+interface TravelExpensesDao {
+
+    //minutes above limited will be calculated with higher rates
+    @Query("SELECT shouldCalculate FROM TravelExpensesSetting WHERE workplaceId =:workplaceId ")
+    fun shouldCalculateTravelExpense(workplaceId: Int): Flow<Boolean>
+}
+
+@Dao
+interface BreakCalculationsDao {
+
+    //minutes above limited will be calculated with higher rates
+    @Query("SELECT minutesToDeduct FROM BreakCalculationsSetting WHERE workplaceId =:workplaceId ")
+    fun breakMinutesToDeduct(workplaceId: Int): Flow<Int>
+}
+@Dao
+interface MonthlyStartingCalculationsSettingDao {
+
+    //minutes above limited will be calculated with higher rates
+    @Query("SELECT dayOfMonth FROM MonthlyStartingCalculationsSetting WHERE workplaceId =:workplaceId ")
+    fun dayStartingCalculation(workplaceId: Int): Flow<Int>
 }

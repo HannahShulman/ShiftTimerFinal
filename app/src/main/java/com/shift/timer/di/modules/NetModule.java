@@ -16,8 +16,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.shift.timer.MainApplication;
 import com.shift.timer.SpContract;
+import com.shift.timer.db.AdditionalHoursSettingDao;
 import com.shift.timer.db.AppDB;
+import com.shift.timer.db.BreakCalculationsDao;
+import com.shift.timer.db.MonthlyStartingCalculationsSettingDao;
 import com.shift.timer.db.ShiftDao;
+import com.shift.timer.db.TravelExpensesDao;
 import com.shift.timer.db.WageSettingDao;
 import com.shift.timer.db.WorkplaceDao;
 import com.shift.timer.ui.ShiftRepository;
@@ -90,6 +94,36 @@ public class NetModule {
                 wageValue.put("wage", 3000);
                 wageValue.put("workplaceId", -1);
                 db.insert("WageSetting", OnConflictStrategy.REPLACE, wageValue);
+
+                db.execSQL("CREATE TABLE IF NOT EXISTS `AdditionalHoursSetting` (`id` INTEGER NOT NULL, `workplaceId` INTEGER NOT NULL,`regularRateMinutes` INTEGER NOT NULL, PRIMARY KEY(`id`))");
+                ContentValues regularRateMinutes = new ContentValues();
+                regularRateMinutes.put("id", -1);
+                regularRateMinutes.put("workplaceId", -1);
+                regularRateMinutes.put("regularRateMinutes", 8.5 * 60);
+                db.insert("AdditionalHoursSetting", OnConflictStrategy.REPLACE, regularRateMinutes);
+
+                db.execSQL("CREATE TABLE IF NOT EXISTS `TravelExpensesSetting` (`id` INTEGER NOT NULL, `workplaceId` INTEGER NOT NULL,`singleTravelExpense` INTEGER NOT NULL,`shouldCalculate` INTEGER NOT NULL, PRIMARY KEY(`id`))");
+                ContentValues travelExpenseSetting = new ContentValues();
+                travelExpenseSetting.put("id", -1);
+                travelExpenseSetting.put("workplaceId", -1);
+                travelExpenseSetting.put("singleTravelExpense", 590);
+                travelExpenseSetting.put("shouldCalculate", 0);
+                db.insert("TravelExpensesSetting", OnConflictStrategy.REPLACE, travelExpenseSetting);
+
+
+                db.execSQL("CREATE TABLE IF NOT EXISTS `BreakCalculationsSetting` (`id` INTEGER NOT NULL, `minutesToDeduct` INTEGER NOT NULL, `workplaceId` INTEGER NOT NULL, PRIMARY KEY(`id`))");
+                ContentValues breaksSetting = new ContentValues();
+                breaksSetting.put("id", -1);
+                breaksSetting.put("minutesToDeduct", 0);
+                breaksSetting.put("workplaceId", -1);
+                db.insert("BreakCalculationsSetting", OnConflictStrategy.REPLACE, breaksSetting);
+
+                db.execSQL("CREATE TABLE IF NOT EXISTS `MonthlyStartingCalculationsSetting` (`id` INTEGER NOT NULL, `dayOfMonth` INTEGER NOT NULL, `workplaceId` INTEGER NOT NULL, PRIMARY KEY(`id`))");
+                ContentValues monthlyPeriod = new ContentValues();
+                monthlyPeriod.put("id", -1);
+                monthlyPeriod.put("dayOfMonth", 1);
+                monthlyPeriod.put("workplaceId", -1);
+                db.insert("MonthlyStartingCalculationsSetting", OnConflictStrategy.REPLACE, monthlyPeriod);
             }
         }).build();
     }
@@ -102,6 +136,23 @@ public class NetModule {
 
     @Provides
     @Singleton
+    BreakCalculationsDao provideBreakCalculationsDao(AppDB db) {
+        return db.breakCalculationsDao();
+    }
+
+    @Provides
+    @Singleton
+    AdditionalHoursSettingDao provideAdditionalHoursSettingDao(AppDB db) {
+        return db.additionalHoursSettingDao();
+    }
+    @Provides
+    @Singleton
+    MonthlyStartingCalculationsSettingDao provideMonthlyStartingCalculationsSettingDao(AppDB db) {
+        return db.monthlyStartingCalculationsSettingDao();
+    }
+
+    @Provides
+    @Singleton
     WorkplaceDao provideWorkplaceDao(AppDB db) {
         return db.workplaceDao();
     }
@@ -110,6 +161,12 @@ public class NetModule {
     @Singleton
     WageSettingDao provideWageSettingDao(AppDB db) {
         return db.wageSettingDao();
+    }
+
+    @Provides
+    @Singleton
+    TravelExpensesDao provideTravelExpensesDao(AppDB db) {
+        return db.travelExpensesDao();
     }
 
     @Provides
