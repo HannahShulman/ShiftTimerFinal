@@ -2,6 +2,7 @@ package com.shift.timer.di;
 
 import com.shift.timer.MainApplication;
 import com.shift.timer.di.components.DaggerOrderGuideComponent;
+import com.shift.timer.ui.AdditionalHoursSettingFragment;
 import com.shift.timer.ui.CompletedShiftFragment;
 import com.shift.timer.ui.CurrentShiftFragment;
 import com.shift.timer.ui.EditShiftFragment;
@@ -23,6 +24,12 @@ public class DaggerInjectHelper {
                 .inject(fragment);
     }
     public static void inject(SettingsFragment fragment) {
+        DaggerOrderGuideComponent.builder()
+                .netComponent(((MainApplication) fragment.getContext().getApplicationContext()).getNetComponent())
+                .build()
+                .inject(fragment);
+    }
+    public static void inject(AdditionalHoursSettingFragment fragment) {
         DaggerOrderGuideComponent.builder()
                 .netComponent(((MainApplication) fragment.getContext().getApplicationContext()).getNetComponent())
                 .build()

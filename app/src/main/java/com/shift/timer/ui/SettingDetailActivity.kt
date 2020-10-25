@@ -30,7 +30,7 @@ class SettingDetailActivity : AppCompatActivity() {
 
         val fragment: Fragment = when (setting) {
             Setting.HOURLY_PAYMENT -> HourlyPaymentSettingFragment()
-            Setting.ADDITIONAL_HOURS_CALCULATION -> TODO()
+            Setting.ADDITIONAL_HOURS_CALCULATION -> AdditionalHoursSettingFragment()
             Setting.TRAVELING_EXPENSES -> TODO()
             Setting.BREAKS -> TODO()
             Setting.MONTH_DATE_CALCULATIONS -> TODO()

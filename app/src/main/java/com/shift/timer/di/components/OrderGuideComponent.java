@@ -3,6 +3,7 @@ package com.shift.timer.di.components;
 
 import com.shift.timer.di.OrderGuidePresenterModule;
 import com.shift.timer.di.scope.FragmentScoped;
+import com.shift.timer.ui.AdditionalHoursSettingFragment;
 import com.shift.timer.ui.CompletedShiftFragment;
 import com.shift.timer.ui.CurrentShiftFragment;
 import com.shift.timer.ui.EditShiftFragment;
@@ -25,4 +26,5 @@ public abstract class OrderGuideComponent {
     public abstract void inject(SettingsFragment fragment);
     public abstract void inject(CompletedShiftFragment fragment);
     public abstract void inject(HourlyPaymentSettingFragment fragment);
+    public abstract void inject(AdditionalHoursSettingFragment fragment);
 }

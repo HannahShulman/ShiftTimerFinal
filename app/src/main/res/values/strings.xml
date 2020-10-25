@@ -39,4 +39,14 @@
     <string name="dont_calculate">לא לחשב</string>
     <string name="salary">שכר</string>
     <string name="reminders">תזכורות</string>
+    <string name="calculate_after">חשב שעות נוספות לאחר %s שעות</string>
+
+    <string-array name="additional_hours_options">
+        <item>לא לחשב</item>
+        <item>7 שעות</item>
+        <item>7.5 שעות</item>
+        <item>8 שעות</item>
+        <item>8.5 שעות</item>
+        <item>9 שעות</item>
+    </string-array>
 </resources>
