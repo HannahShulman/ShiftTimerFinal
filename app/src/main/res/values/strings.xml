@@ -40,6 +40,7 @@
     <string name="salary">שכר</string>
     <string name="reminders">תזכורות</string>
     <string name="calculate_after">חשב שעות נוספות לאחר %s שעות</string>
+    <string name="additional_hours_exp">שעתיים ראשונות לפי 125%, שעה שלישית ומעלה 150%</string>
 
     <string-array name="additional_hours_options">
         <item>לא לחשב</item>
