@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.shift.timer.SpContract
 import com.shift.timer.db.*
+import com.shift.timer.model.TravelExpensesSetting
 import com.shift.timer.model.Workplace
 import com.shift.timer.ui.ShiftRepository
 import com.shift.timer.ui.WorkplaceRepository
@@ -40,6 +41,20 @@ class SettingsViewModel
     fun setHourlyPayment(cents: Int) {
         val c = viewModelScope.launch {
             settingsRepository.setHourlyPayment(cents)
+        }
+
+        c.invokeOnCompletion {
+            settingSaved.value = true
+        }
+    }
+
+    fun getTravellingExpenseSetting(): Flow<TravelExpensesSetting> {
+        return settingsRepository.getTravellingExpenseSetting()
+    }
+
+    fun updateTravelExpenseSetting(shouldCalculate: Boolean, singleTravelExpense: Int) {
+        val c = viewModelScope.launch {
+            settingsRepository.updateTravelExpenseSetting(shouldCalculate, singleTravelExpense)
         }
 
         c.invokeOnCompletion {
@@ -94,5 +109,17 @@ class SettingsRepository @Inject constructor(
 
     suspend fun setHourlyPayment(cents: Int) {
         wageDao.setHourlyPayment(-1, cents)
+    }
+
+    suspend fun updateTravelExpenseSetting(shouldCalculate: Boolean, singleTravelExpense: Int) {
+        travelExpensesDao.updateTravelExpenseSetting(
+            -1,
+            1.takeIf { shouldCalculate } ?: 0,
+            singleTravelExpense
+        )
+    }
+
+    fun getTravellingExpenseSetting(): Flow<TravelExpensesSetting> {
+        return travelExpensesDao.getTravellingExpenseSetting(-1)
     }
 }

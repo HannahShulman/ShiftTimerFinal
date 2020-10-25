@@ -31,8 +31,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun onSettingSelected(setting: Setting) {
-//        Toast.makeText(context, setting.name, Toast.LENGTH_SHORT).show()
-//        activity?.startActivity(Intent(requireContext(), SettingDetailActivity::class.java))
         SettingDetailActivity.start(requireContext(), setting)
     }
 

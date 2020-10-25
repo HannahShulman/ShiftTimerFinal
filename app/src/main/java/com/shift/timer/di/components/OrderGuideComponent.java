@@ -9,6 +9,7 @@ import com.shift.timer.ui.CurrentShiftFragment;
 import com.shift.timer.ui.EditShiftFragment;
 import com.shift.timer.ui.HourlyPaymentSettingFragment;
 import com.shift.timer.ui.SettingsFragment;
+import com.shift.timer.ui.TravelExpensesSettingFragment;
 
 import dagger.Component;
 import dagger.Module;
@@ -27,4 +28,5 @@ public abstract class OrderGuideComponent {
     public abstract void inject(CompletedShiftFragment fragment);
     public abstract void inject(HourlyPaymentSettingFragment fragment);
     public abstract void inject(AdditionalHoursSettingFragment fragment);
+    public abstract void inject(TravelExpensesSettingFragment fragment);
 }

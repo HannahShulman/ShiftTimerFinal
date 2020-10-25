@@ -41,7 +41,6 @@ class AdditionalHoursSettingFragment : Fragment(R.layout.fragment_additional_hou
         }
 
         hours_picker.setOnItemSelectedListener { picker, data, position ->
-            Log.d("TAG", "onViewCreated: $data")
             calculate_from.text = when (position) {
                 0 -> getString(R.string.dont_calculate)
                 else -> {

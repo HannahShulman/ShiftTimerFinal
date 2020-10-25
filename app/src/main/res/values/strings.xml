@@ -41,6 +41,11 @@
     <string name="reminders">תזכורות</string>
     <string name="calculate_after">חשב שעות נוספות לאחר %s שעות</string>
     <string name="additional_hours_exp">שעתיים ראשונות לפי 125%, שעה שלישית ומעלה 150%</string>
+    <string name="_200">200</string>
+    <string name="_150">150</string>
+    <string name="shekel_per_month">ש"ח לחודש</string>
+    <string name="per_shift">למשמרת</string>
+    <string name="per_month">לחודש</string>
 
     <string-array name="additional_hours_options">
         <item>לא לחשב</item>
