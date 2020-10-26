@@ -77,19 +77,19 @@ class SettingsListAdapter(val settingClickListener:(setting: Setting)-> Unit) : 
                 ?: context.getString(R.string.dont_calculate)
             Setting.TRAVELING_EXPENSES -> context.getString(R.string.calculate.takeIf { calculateTravelExpenses }
                 ?: R.string.dont_calculate)
-            Setting.BREAKS -> minutesToDeduct.toString().takeIf { minutesToDeduct > 0 }
+            Setting.BREAKS -> context.getString(R.string.total_time, minutesToDeduct.toString()).takeIf { minutesToDeduct > 0 }
                 ?: context.getString(R.string.dont_calculate)
-            Setting.MONTH_DATE_CALCULATIONS -> when (startDayCalculation) {
-                1 -> context.getString(R.string.payment_cycle, startDayCalculation, 30)
-                else -> context.getString(R.string.payment_cycle, startDayCalculation, startDayCalculation - 1)
-            }
-
-            Setting.RATE_PER_DAY -> ""
-            Setting.NOTIFY_ARRIVAL -> ""
-            Setting.NOTIFY_LEAVING -> ""
-            Setting.NOTIFY_END_OF_SHIFT -> ""
+//            Setting.MONTH_DATE_CALCULATIONS -> when (startDayCalculation) {
+//                1 -> context.getString(R.string.payment_cycle, startDayCalculation, 30)
+//                else -> context.getString(R.string.payment_cycle, startDayCalculation, startDayCalculation - 1)
+//            }
+//
+//            Setting.RATE_PER_DAY -> ""
+//            Setting.NOTIFY_ARRIVAL -> ""
+//            Setting.NOTIFY_LEAVING -> ""
+//            Setting.NOTIFY_END_OF_SHIFT -> ""
             Setting.PAYMENTS_HEADER -> ""
-            Setting.NOTIFY_HEADER -> ""
+//            Setting.NOTIFY_HEADER -> ""
         }
     }
 }
@@ -120,30 +120,30 @@ enum class Setting(val title: Int, val icon: Int, val type: SettingType) {
         SettingType.PAYMENTS
     ),
     BREAKS(R.string.breaks, R.drawable.ic_breaks, SettingType.PAYMENTS),
-    MONTH_DATE_CALCULATIONS(
-        R.string.calculation_period,
-        R.drawable.ic_cycle_calculation,
-        SettingType.PAYMENTS
-    ),
-    RATE_PER_DAY(R.string.rate_per_day, R.drawable.ic_special_rate, SettingType.PAYMENTS),
-    NOTIFY_HEADER(
-        R.string.reminders,
-        R.drawable.hourly_rate,
-        SettingType.HEADER
-    ),
-    NOTIFY_ARRIVAL(
-        R.string.notify_arrival,
-        R.drawable.check_in_shift_icon,
-        SettingType.NOTIFICATION
-    ),
-    NOTIFY_LEAVING(
-        R.string.notify_exit,
-        R.drawable.check_out_shift_icon,
-        SettingType.NOTIFICATION
-    ),
-    NOTIFY_END_OF_SHIFT(
-        R.string.notify_end_of_shift,
-        R.drawable.ic_reminder_on_shift_completion,
-        SettingType.NOTIFICATION
-    ),
+//    MONTH_DATE_CALCULATIONS(
+//        R.string.calculation_period,
+//        R.drawable.ic_cycle_calculation,
+//        SettingType.PAYMENTS
+//    ),
+//    RATE_PER_DAY(R.string.rate_per_day, R.drawable.ic_special_rate, SettingType.PAYMENTS),
+//    NOTIFY_HEADER(
+//        R.string.reminders,
+//        R.drawable.hourly_rate,
+//        SettingType.HEADER
+//    ),
+//    NOTIFY_ARRIVAL(
+//        R.string.notify_arrival,
+//        R.drawable.check_in_shift_icon,
+//        SettingType.NOTIFICATION
+//    ),
+//    NOTIFY_LEAVING(
+//        R.string.notify_exit,
+//        R.drawable.check_out_shift_icon,
+//        SettingType.NOTIFICATION
+//    ),
+//    NOTIFY_END_OF_SHIFT(
+//        R.string.notify_end_of_shift,
+//        R.drawable.ic_reminder_on_shift_completion,
+//        SettingType.NOTIFICATION
+//    ),
 }

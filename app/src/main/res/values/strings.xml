@@ -40,12 +40,14 @@
     <string name="salary">שכר</string>
     <string name="reminders">תזכורות</string>
     <string name="calculate_after">חשב שעות נוספות לאחר %s שעות</string>
+    <string name="calculate_break_after">הורד %s דקות מכל משמרת</string>
     <string name="additional_hours_exp">שעתיים ראשונות לפי 125%, שעה שלישית ומעלה 150%</string>
     <string name="_200">200</string>
     <string name="_150">150</string>
     <string name="shekel_per_month">ש"ח לחודש</string>
     <string name="per_shift">למשמרת</string>
     <string name="per_month">לחודש</string>
+    <string name="breaks_calculation_exp">זמן הפסקה לא יופחת ממשמרת של פחות מ-6 שעות</string>
 
     <string-array name="additional_hours_options">
         <item>לא לחשב</item>
@@ -54,5 +56,27 @@
         <item>8 שעות</item>
         <item>8.5 שעות</item>
         <item>9 שעות</item>
+    </string-array>
+
+    <string-array name="break_calculations_options">
+        <item>לא לחשב</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+        <item>60</item>
+        <item>65</item>
+        <item>70</item>
+        <item>75</item>
+        <item>80</item>
+        <item>85</item>
+        <item>90</item>
     </string-array>
 </resources>

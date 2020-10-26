@@ -3,17 +3,16 @@ package com.shift.timer.di.components;
 
 import com.shift.timer.di.OrderGuidePresenterModule;
 import com.shift.timer.di.scope.FragmentScoped;
-import com.shift.timer.ui.AdditionalHoursSettingFragment;
+import com.shift.timer.ui.settingfragments.AdditionalHoursSettingFragment;
+import com.shift.timer.ui.settingfragments.BreaksSettingFragment;
 import com.shift.timer.ui.CompletedShiftFragment;
 import com.shift.timer.ui.CurrentShiftFragment;
 import com.shift.timer.ui.EditShiftFragment;
-import com.shift.timer.ui.HourlyPaymentSettingFragment;
+import com.shift.timer.ui.settingfragments.HourlyPaymentSettingFragment;
 import com.shift.timer.ui.SettingsFragment;
-import com.shift.timer.ui.TravelExpensesSettingFragment;
+import com.shift.timer.ui.settingfragments.TravelExpensesSettingFragment;
 
 import dagger.Component;
-import dagger.Module;
-import dagger.Provides;
 
 /**
  * Created by roy on 5/31/2017.
@@ -29,4 +28,5 @@ public abstract class OrderGuideComponent {
     public abstract void inject(HourlyPaymentSettingFragment fragment);
     public abstract void inject(AdditionalHoursSettingFragment fragment);
     public abstract void inject(TravelExpensesSettingFragment fragment);
+    public abstract void inject(BreaksSettingFragment fragment);
 }

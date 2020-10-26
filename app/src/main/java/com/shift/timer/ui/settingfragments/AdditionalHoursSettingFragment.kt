@@ -1,27 +1,17 @@
-package com.shift.timer.ui
+package com.shift.timer.ui.settingfragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.shift.timer.R
 import com.shift.timer.di.DaggerInjectHelper
-import com.shift.timer.viewmodels.SettingsViewModel
-import com.shift.timer.viewmodels.SettingsViewModelFactory
+import com.shift.timer.ui.SettingSaveable
 import kotlinx.android.synthetic.main.fragment_additional_hours_setting_layout.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class AdditionalHoursSettingFragment : Fragment(R.layout.fragment_additional_hours_setting_layout),
+class AdditionalHoursSettingFragment : SettingBaseFragment(R.layout.fragment_additional_hours_setting_layout),
     SettingSaveable {
-
-    @Inject
-    lateinit var factory: SettingsViewModelFactory
-
-    private val settingsViewModel: SettingsViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

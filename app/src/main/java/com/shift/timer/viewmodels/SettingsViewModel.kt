@@ -28,6 +28,7 @@ class SettingsViewModel
     fun getHourlyPayment(): Flow<Int> = settingsRepository.getHourlyPaymentBySelectedId()
 
     fun getRegularRatePaid(): Flow<Int> = settingsRepository.limitMinutesToBePaidRegularRate()
+    fun getBreakMinutesToCalculate(): Flow<Int> = settingsRepository.getBreakMinutesToCalculate()
 
     fun shouldCalculateTravelExpenses(): Flow<Boolean> =
         settingsRepository.shouldCalculateTravelExpenses()
@@ -41,6 +42,15 @@ class SettingsViewModel
     fun setHourlyPayment(cents: Int) {
         val c = viewModelScope.launch {
             settingsRepository.setHourlyPayment(cents)
+        }
+
+        c.invokeOnCompletion {
+            settingSaved.value = true
+        }
+    }
+    fun setBreakMinutesToDeduct(minutes: Int) {
+        val c = viewModelScope.launch {
+            settingsRepository.setBreakMinutesToDeduct(minutes)
         }
 
         c.invokeOnCompletion {
@@ -121,5 +131,13 @@ class SettingsRepository @Inject constructor(
 
     fun getTravellingExpenseSetting(): Flow<TravelExpensesSetting> {
         return travelExpensesDao.getTravellingExpenseSetting(-1)
+    }
+
+    fun getBreakMinutesToCalculate() : Flow<Int>{
+        return breakCalculationsDao.breakMinutesToDeduct(-1)
+    }
+
+    suspend fun setBreakMinutesToDeduct(minutesToDeduct: Int){
+        breakCalculationsDao.setBreakMinutesToDeduct(-1, minutesToDeduct)
     }
 }

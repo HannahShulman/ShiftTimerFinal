@@ -99,6 +99,9 @@ interface BreakCalculationsDao {
     //minutes above limited will be calculated with higher rates
     @Query("SELECT minutesToDeduct FROM BreakCalculationsSetting WHERE workplaceId =:workplaceId ")
     fun breakMinutesToDeduct(workplaceId: Int): Flow<Int>
+
+    @Query("UPDATE BreakCalculationsSetting SET minutesToDeduct=:minutesToDeduct WHERE id =:workplaceId")
+    suspend fun setBreakMinutesToDeduct(workplaceId: Int, minutesToDeduct: Int)
 }
 @Dao
 interface MonthlyStartingCalculationsSettingDao {

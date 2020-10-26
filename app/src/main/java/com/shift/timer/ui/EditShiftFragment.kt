@@ -14,7 +14,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.shift.timer.R
+import com.shift.timer.dateToTimeFormat
 import com.shift.timer.di.DaggerInjectHelper
+import com.shift.timer.inputToCents
 import com.shift.timer.model.WageRatePercentage
 import com.shift.timer.throttledClickListener
 import com.shift.timer.viewmodels.EditShiftData
@@ -26,8 +28,6 @@ import kotlinx.android.synthetic.main.exit_shift_edit_item_layout.*
 import kotlinx.android.synthetic.main.rate_shift_edit_item_layout.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 class EditShiftFragment : BottomSheetDialogFragment() {
@@ -101,27 +101,26 @@ class EditShiftFragment : BottomSheetDialogFragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getShiftById(requireArguments().getInt("id")).collect {
                 //set data
-                entry_value.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(it.start)
+                entry_value.text = it.start.dateToTimeFormat()
                 entry_time_picker.setDefaultDate(it.start)
-                exit_value.text = it.end?.let { end ->
-                    SimpleDateFormat(
-                        "HH:mm",
-                        Locale.getDefault()
-                    ).format(end)
-                } ?: "---"
+                exit_value.text = it.end?.dateToTimeFormat() ?: "---"
                 exit_time_picker.setDefaultDate(it.end)
                 rate_value.text = getString(
-                    R.string.rate_percent, it.rate.value)
+                    R.string.rate_percent, it.rate.value
+                )
                 shift_note.setText(it.note)
-                total_payment.text =  getString(
-                    R.string.total_payment, it.getPaymentDisplay)
+                total_payment.text = getString(
+                    R.string.total_payment, it.getPaymentDisplay
+                )
 
-                rate_segments.check(when(it.rate){
-                    WageRatePercentage.HUNDRED_PERCENT -> R.id.percent_100
-                    WageRatePercentage.HUNDRED_TWENTY__FIVE_PERCENT -> R.id.percent_125
-                    WageRatePercentage.HUNDRED_FIFTY_PERCENT -> R.id.percent_150
-                    WageRatePercentage.TWO_HUNDRED -> R.id.percent_200
-                })
+                rate_segments.check(
+                    when (it.rate) {
+                        WageRatePercentage.HUNDRED_PERCENT -> R.id.percent_100
+                        WageRatePercentage.HUNDRED_TWENTY__FIVE_PERCENT -> R.id.percent_125
+                        WageRatePercentage.HUNDRED_FIFTY_PERCENT -> R.id.percent_150
+                        WageRatePercentage.TWO_HUNDRED -> R.id.percent_200
+                    }
+                )
 
             }
         }
@@ -137,7 +136,7 @@ class EditShiftFragment : BottomSheetDialogFragment() {
 
     private fun buildEditData(): EditShiftData {
         val id = requireArguments().getInt("id")
-        val rate = when(rate_segments.checkedRadioButtonId){
+        val rate = when (rate_segments.checkedRadioButtonId) {
             R.id.percent_100 -> 100
             R.id.percent_125 -> 125
             R.id.percent_150 -> 150
@@ -145,7 +144,7 @@ class EditShiftFragment : BottomSheetDialogFragment() {
             else -> 100
         }
 
-        val bonus = bonus_et.text.toString().toDouble().times(100).toInt()
+        val bonus = bonus_et.text.toString().inputToCents()
 
         return EditShiftData(
             id,

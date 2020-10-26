@@ -6,12 +6,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.shift.timer.R
 import com.shift.timer.Setting
+import com.shift.timer.ui.settingfragments.AdditionalHoursSettingFragment
+import com.shift.timer.ui.settingfragments.BreaksSettingFragment
+import com.shift.timer.ui.settingfragments.HourlyPaymentSettingFragment
+import com.shift.timer.ui.settingfragments.TravelExpensesSettingFragment
 import kotlinx.coroutines.InternalCoroutinesApi
 
 class SettingDetailActivity : AppCompatActivity() {
@@ -32,19 +35,18 @@ class SettingDetailActivity : AppCompatActivity() {
             Setting.HOURLY_PAYMENT -> HourlyPaymentSettingFragment()
             Setting.ADDITIONAL_HOURS_CALCULATION -> AdditionalHoursSettingFragment()
             Setting.TRAVELING_EXPENSES -> TravelExpensesSettingFragment()
-            Setting.BREAKS -> TODO()
-            Setting.MONTH_DATE_CALCULATIONS -> TODO()
-            Setting.RATE_PER_DAY -> TODO()
-            Setting.NOTIFY_ARRIVAL -> TODO()
-            Setting.NOTIFY_LEAVING -> TODO()
-            Setting.NOTIFY_END_OF_SHIFT -> TODO()
-            else -> TODO()
+            Setting.BREAKS -> BreaksSettingFragment()
+//            Setting.MONTH_DATE_CALCULATIONS -> BreaksSettingFragment()
+//            Setting.RATE_PER_DAY -> BreaksSettingFragment()
+//            Setting.NOTIFY_ARRIVAL -> BreaksSettingFragment()
+//            Setting.NOTIFY_LEAVING -> BreaksSettingFragment()
+//            Setting.NOTIFY_END_OF_SHIFT -> BreaksSettingFragment()
+            else -> BreaksSettingFragment()
         }
 
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
                 replace(R.id.fragment_container, fragment)
-                addToBackStack(null)
             }
         }
 
@@ -87,5 +89,6 @@ class SettingDetailActivity : AppCompatActivity() {
 }
 
 interface SettingSaveable{
+    fun settingSavedCallback()
     fun saveSetting()
 }

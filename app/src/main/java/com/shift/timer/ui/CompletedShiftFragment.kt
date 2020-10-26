@@ -23,14 +23,13 @@ import com.shift.timer.animations.Dismissible
 import com.shift.timer.animations.RevealAnimationSetting
 import com.shift.timer.databinding.FragmentCompletedShiftBinding
 import com.shift.timer.di.DaggerInjectHelper
+import com.shift.timer.dateToTimeFormat
 import com.shift.timer.model.totalTimeInMinutes
 import com.shift.timer.throttledClickListener
 import com.shift.timer.viewBinding
 import com.shift.timer.viewmodels.CompletedShiftViewModel
 import com.shift.timer.viewmodels.CompletedShiftViewModelFactory
 import kotlinx.coroutines.flow.collect
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 class CompletedShiftFragment : DialogFragment(), Dismissible {
@@ -70,18 +69,17 @@ class CompletedShiftFragment : DialogFragment(), Dismissible {
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             completedShiftViewModel.getShiftById(requireArguments().getInt(SHIFT_ID)).collect {
                 binding.shiftSummary.runTranslationAnimation(0f, 1.4f) {
-                    binding.entryValue.text =
-                        SimpleDateFormat("HH:mm", Locale.getDefault()).format(it.start)
+                    binding.entryValue.text = it.start.dateToTimeFormat()
                     it.end?.let { endDate ->
-                        binding.exitValue.text =
-                            SimpleDateFormat("HH:mm", Locale.getDefault()).format(endDate)
+                        binding.exitValue.text = endDate.dateToTimeFormat()
                     }
                     binding.rateValue.text =
                         getString(R.string.rate_percent, it.rate.value)//it.rate.value)
                     binding.totalTimeValue.text =
                         getString(R.string.total_time, it.totalTimeInMinutes().toString())
                     binding.totalPaymentValue.text = getString(
-                        R.string.total_payment, it.getPaymentDisplay)
+                        R.string.total_payment, it.getPaymentDisplay
+                    )
 //                    )
                 }
             }
