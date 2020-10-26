@@ -73,6 +73,10 @@ interface AdditionalHoursSettingDao {
     //minutes above limited will be calculated with higher rates
     @Query("SELECT regularRateMinutes FROM AdditionalHoursSetting WHERE workplaceId =:workplaceId ")
     fun getLimitedMinutesForRegularPayment(workplaceId: Int): Flow<Int>
+
+    //minutes above limited will be calculated with higher rates
+    @Query("UPDATE AdditionalHoursSetting SET  regularRateMinutes=:minutes WHERE id =:workplaceId ")
+    suspend fun setMinutesPaidRegularRate(workplaceId: Int, minutes: Int)
 }
 @Dao
 interface TravelExpensesDao {

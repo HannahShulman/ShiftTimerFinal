@@ -1,5 +1,6 @@
 package com.shift.timer.ui
 
+import android.app.Activity.RESULT_OK
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.shift.timer.R
 import com.shift.timer.dateToTimeFormat
 import com.shift.timer.di.DaggerInjectHelper
+import com.shift.timer.extensions.extraNotNull
 import com.shift.timer.inputToCents
 import com.shift.timer.model.WageRatePercentage
 import com.shift.timer.throttledClickListener
@@ -32,12 +34,18 @@ import javax.inject.Inject
 
 class EditShiftFragment : BottomSheetDialogFragment() {
 
+    companion object{
+        const val SHIFT_ID_KEY = "id"
+    }
+
     private val expansionLayoutCollection = ExpansionLayoutCollection()
 
     @Inject
     lateinit var factory: EditShiftViewModelFactory
 
     private val viewModel: EditShiftViewModel by viewModels { factory }
+
+    private val shiftId: Int by extraNotNull(SHIFT_ID_KEY, -1)
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
         BottomSheetDialog(requireContext(), theme).apply {
@@ -93,13 +101,11 @@ class EditShiftFragment : BottomSheetDialogFragment() {
                         }
                     }
             }
-            arguments?.let { _ ->
-            }
         }
 
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getShiftById(requireArguments().getInt("id")).collect {
+            viewModel.getShiftById(shiftId).collect {
                 //set data
                 entry_value.text = it.start.dateToTimeFormat()
                 entry_time_picker.setDefaultDate(it.start)
@@ -127,7 +133,7 @@ class EditShiftFragment : BottomSheetDialogFragment() {
 
         save_btn.throttledClickListener {
             viewModel.updateShiftData(buildEditData())
-            targetFragment?.onActivityResult(targetRequestCode, 23, null)
+            targetFragment?.onActivityResult(targetRequestCode, RESULT_OK, null)
             dismiss()
         }
 
@@ -135,7 +141,7 @@ class EditShiftFragment : BottomSheetDialogFragment() {
     }
 
     private fun buildEditData(): EditShiftData {
-        val id = requireArguments().getInt("id")
+        val id = shiftId
         val rate = when (rate_segments.checkedRadioButtonId) {
             R.id.percent_100 -> 100
             R.id.percent_125 -> 125
@@ -155,5 +161,4 @@ class EditShiftFragment : BottomSheetDialogFragment() {
             shift_note.text.toString()
         )
     }
-
 }

@@ -48,6 +48,16 @@ class SettingsViewModel
             settingSaved.value = true
         }
     }
+
+    fun setMinutesPaidRegularRate(minutes: Int) {
+        val c = viewModelScope.launch {
+            settingsRepository.setMinutesPaidRegularRate(minutes)
+        }
+
+        c.invokeOnCompletion {
+            settingSaved.value = true
+        }
+    }
     fun setBreakMinutesToDeduct(minutes: Int) {
         val c = viewModelScope.launch {
             settingsRepository.setBreakMinutesToDeduct(minutes)
@@ -119,6 +129,9 @@ class SettingsRepository @Inject constructor(
 
     suspend fun setHourlyPayment(cents: Int) {
         wageDao.setHourlyPayment(-1, cents)
+    }
+    suspend fun setMinutesPaidRegularRate(cents: Int) {
+        additionalHoursSettingDao.setMinutesPaidRegularRate(-1, cents)
     }
 
     suspend fun updateTravelExpenseSetting(shouldCalculate: Boolean, singleTravelExpense: Int) {

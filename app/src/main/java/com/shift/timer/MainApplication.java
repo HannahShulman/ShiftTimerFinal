@@ -9,6 +9,8 @@ import com.shift.timer.di.components.NetComponent;
 import com.shift.timer.di.modules.AppModule;
 import com.shift.timer.di.modules.NetModule;
 
+import java.util.Arrays;
+
 
 public class MainApplication extends Application {
 
@@ -40,4 +42,5 @@ public class MainApplication extends Application {
                 .netModule(new NetModule("abcd"))
                 .build();
     }
+
 }

@@ -1,17 +1,22 @@
 package com.shift.timer.ui.settingfragments
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.shift.timer.R
 import com.shift.timer.di.DaggerInjectHelper
+import com.shift.timer.minutesToHoursString
 import com.shift.timer.ui.SettingSaveable
 import kotlinx.android.synthetic.main.fragment_additional_hours_setting_layout.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class AdditionalHoursSettingFragment : SettingBaseFragment(R.layout.fragment_additional_hours_setting_layout),
+class AdditionalHoursSettingFragment :
+    SettingBaseFragment(R.layout.fragment_additional_hours_setting_layout),
     SettingSaveable {
+
+    var selectedPosition: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,20 +28,29 @@ class AdditionalHoursSettingFragment : SettingBaseFragment(R.layout.fragment_add
 
         viewLifecycleOwner.lifecycleScope.launch {
             settingsViewModel.getRegularRatePaid().collect { minutes ->
-                calculate_from.text = getString(R.string.calculate_after, minutes.div(60.0).toString().replace(".0", ""))
-                val array = resources.getStringArray(R.array.additional_hours_options)
-                val position = maxOf(array.indexOfFirst { it.contains(minutes.div(60.0).toString()) }, 0)
-                hours_picker.selectedItemPosition = position
+                val position = maxOf(hours_picker.data.indexOfFirst {
+                    it.toString().contains(minutes.minutesToHoursString())
+                }, 0)
+                calculate_from.text =
+                    getString(
+                        R.string.calculate_after,
+                        minutes.minutesToHoursString()
+                    ).takeIf { position != 0 } ?: getString(R.string.dont_calculate)
+                Handler().postDelayed({
+                    hours_picker.setSelectedItemPosition(position, false)// = position
+                    selectedPosition = position
+                }, 100)
             }
         }
 
         hours_picker.setOnItemSelectedListener { picker, data, position ->
+            selectedPosition = position
             calculate_from.text = when (position) {
                 0 -> getString(R.string.dont_calculate)
                 else -> {
                     val d = (data as? String)?.split(" ")
-                    val total = d?.get(0)?.toDouble()?.times(60)
-                    total?.let { getString(R.string.calculate_after, it.div(60).toString()) }
+                    val total = d?.get(0)?.toDouble()?.times(60)?.toInt()
+                    total?.let { getString(R.string.calculate_after, it.minutesToHoursString()) }
                         ?: getString(R.string.dont_calculate)
                 }
             }
@@ -44,6 +58,11 @@ class AdditionalHoursSettingFragment : SettingBaseFragment(R.layout.fragment_add
     }
 
     override fun saveSetting() {
-        settingsViewModel.setHourlyPayment(100)
+        val minutes = if (selectedPosition != 0) {
+            ((selectedPosition - 1) * 30) + 7 * 60
+        } else {
+            0
+        }
+        settingsViewModel.setMinutesPaidRegularRate(minutes)
     }
 }
