@@ -29,6 +29,7 @@ class SettingsViewModel
 
     fun getRegularRatePaid(): Flow<Int> = settingsRepository.limitMinutesToBePaidRegularRate()
     fun getBreakMinutesToCalculate(): Flow<Int> = settingsRepository.getBreakMinutesToCalculate()
+    fun getDayOfMonthlyCycle(): Flow<Int> = settingsRepository.getDayOfMonthlyCycle()
 
     fun shouldCalculateTravelExpenses(): Flow<Boolean> =
         settingsRepository.shouldCalculateTravelExpenses()
@@ -61,6 +62,15 @@ class SettingsViewModel
     fun setBreakMinutesToDeduct(minutes: Int) {
         val c = viewModelScope.launch {
             settingsRepository.setBreakMinutesToDeduct(minutes)
+        }
+
+        c.invokeOnCompletion {
+            settingSaved.value = true
+        }
+    }
+    fun startMonthyCalculationCycle(dayOfMonth: Int) {
+        val c = viewModelScope.launch {
+            settingsRepository.startMonthlyCalculationCycle(dayOfMonth)
         }
 
         c.invokeOnCompletion {
@@ -150,7 +160,14 @@ class SettingsRepository @Inject constructor(
         return breakCalculationsDao.breakMinutesToDeduct(-1)
     }
 
+    fun getDayOfMonthlyCycle(): Flow<Int> {
+        return monthlyStartingCalculationsSettingDao.dayStartingCalculation(-1)
+    }
+
     suspend fun setBreakMinutesToDeduct(minutesToDeduct: Int){
         breakCalculationsDao.setBreakMinutesToDeduct(-1, minutesToDeduct)
+    }
+    suspend fun startMonthlyCalculationCycle(dayOfMonth: Int){
+        monthlyStartingCalculationsSettingDao.startMonthlyCalculationCycle(-1, dayOfMonth)
     }
 }

@@ -113,4 +113,7 @@ interface MonthlyStartingCalculationsSettingDao {
     //minutes above limited will be calculated with higher rates
     @Query("SELECT dayOfMonth FROM MonthlyStartingCalculationsSetting WHERE workplaceId =:workplaceId ")
     fun dayStartingCalculation(workplaceId: Int): Flow<Int>
+    //minutes above limited will be calculated with higher rates
+    @Query("UPDATE MonthlyStartingCalculationsSetting SET dayOfMonth=:dayOfMonth WHERE id =:workplaceId")
+    suspend fun startMonthlyCalculationCycle(workplaceId: Int, dayOfMonth: Int)
 }

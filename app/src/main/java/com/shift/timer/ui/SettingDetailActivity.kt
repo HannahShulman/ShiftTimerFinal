@@ -11,10 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.shift.timer.R
 import com.shift.timer.Setting
-import com.shift.timer.ui.settingfragments.AdditionalHoursSettingFragment
-import com.shift.timer.ui.settingfragments.BreaksSettingFragment
-import com.shift.timer.ui.settingfragments.HourlyPaymentSettingFragment
-import com.shift.timer.ui.settingfragments.TravelExpensesSettingFragment
+import com.shift.timer.ui.settingfragments.*
 import kotlinx.coroutines.InternalCoroutinesApi
 
 class SettingDetailActivity : AppCompatActivity() {
@@ -36,7 +33,7 @@ class SettingDetailActivity : AppCompatActivity() {
             Setting.ADDITIONAL_HOURS_CALCULATION -> AdditionalHoursSettingFragment()
             Setting.TRAVELING_EXPENSES -> TravelExpensesSettingFragment()
             Setting.BREAKS -> BreaksSettingFragment()
-//            Setting.MONTH_DATE_CALCULATIONS -> BreaksSettingFragment()
+            Setting.MONTH_DATE_CALCULATIONS -> MonthlyCalculationCycleFragment()
 //            Setting.RATE_PER_DAY -> BreaksSettingFragment()
 //            Setting.NOTIFY_ARRIVAL -> BreaksSettingFragment()
 //            Setting.NOTIFY_LEAVING -> BreaksSettingFragment()

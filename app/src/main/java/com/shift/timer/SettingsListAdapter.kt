@@ -72,17 +72,17 @@ class SettingsListAdapter(val settingClickListener:(setting: Setting)-> Unit) : 
         holder.icon.setImageResource(data[position].icon)
         holder.value.text = when (data[position]) {
             Setting.HOURLY_PAYMENT -> context.getString(R.string.total_payment, hourlyPayment)
-            Setting.ADDITIONAL_HOURS_CALCULATION -> startHigherRatePaymentFrom.toString()
+            Setting.ADDITIONAL_HOURS_CALCULATION -> startHigherRatePaymentFrom.toString().removeTrailingZero()
                 .takeIf { startHigherRatePaymentFrom > 0 }
                 ?: context.getString(R.string.dont_calculate)
             Setting.TRAVELING_EXPENSES -> context.getString(R.string.calculate.takeIf { calculateTravelExpenses }
                 ?: R.string.dont_calculate)
             Setting.BREAKS -> context.getString(R.string.total_time, minutesToDeduct.toString()).takeIf { minutesToDeduct > 0 }
                 ?: context.getString(R.string.dont_calculate)
-//            Setting.MONTH_DATE_CALCULATIONS -> when (startDayCalculation) {
-//                1 -> context.getString(R.string.payment_cycle, startDayCalculation, 30)
-//                else -> context.getString(R.string.payment_cycle, startDayCalculation, startDayCalculation - 1)
-//            }
+            Setting.MONTH_DATE_CALCULATIONS -> when (startDayCalculation) {
+                1 -> context.getString(R.string.payment_cycle, startDayCalculation, 30)
+                else -> context.getString(R.string.payment_cycle, startDayCalculation, startDayCalculation - 1)
+            }
 //
 //            Setting.RATE_PER_DAY -> ""
 //            Setting.NOTIFY_ARRIVAL -> ""
@@ -120,11 +120,11 @@ enum class Setting(val title: Int, val icon: Int, val type: SettingType) {
         SettingType.PAYMENTS
     ),
     BREAKS(R.string.breaks, R.drawable.ic_breaks, SettingType.PAYMENTS),
-//    MONTH_DATE_CALCULATIONS(
-//        R.string.calculation_period,
-//        R.drawable.ic_cycle_calculation,
-//        SettingType.PAYMENTS
-//    ),
+    MONTH_DATE_CALCULATIONS(
+        R.string.calculation_period,
+        R.drawable.ic_cycle_calculation,
+        SettingType.PAYMENTS
+    ),
 //    RATE_PER_DAY(R.string.rate_per_day, R.drawable.ic_special_rate, SettingType.PAYMENTS),
 //    NOTIFY_HEADER(
 //        R.string.reminders,

@@ -9,6 +9,7 @@ import com.shift.timer.ui.CurrentShiftFragment;
 import com.shift.timer.ui.EditShiftFragment;
 import com.shift.timer.ui.settingfragments.HourlyPaymentSettingFragment;
 import com.shift.timer.ui.SettingsFragment;
+import com.shift.timer.ui.settingfragments.MonthlyCalculationCycleFragment;
 import com.shift.timer.ui.settingfragments.TravelExpensesSettingFragment;
 
 public class DaggerInjectHelper {
@@ -56,6 +57,12 @@ public class DaggerInjectHelper {
                 .inject(fragment);
     }
     public static void inject(BreaksSettingFragment fragment) {
+        DaggerOrderGuideComponent.builder()
+                .netComponent(((MainApplication) fragment.getContext().getApplicationContext()).getNetComponent())
+                .build()
+                .inject(fragment);
+    }
+    public static void inject(MonthlyCalculationCycleFragment fragment) {
         DaggerOrderGuideComponent.builder()
                 .netComponent(((MainApplication) fragment.getContext().getApplicationContext()).getNetComponent())
                 .build()

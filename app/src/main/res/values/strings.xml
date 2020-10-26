@@ -48,6 +48,8 @@
     <string name="per_shift">למשמרת</string>
     <string name="per_month">לחודש</string>
     <string name="breaks_calculation_exp">זמן הפסקה לא יופחת ממשמרת של פחות מ-6 שעות</string>
+    <string name="calculate_full_month">מתחילת יד סוף החודש</string>
+    <string name="calculate_cycle_from_to" >המשכורת תחושב מה %d עד %d לחודש הבא</string>
 
     <string-array name="additional_hours_options">
         <item>לא לחשב</item>
@@ -78,5 +80,37 @@
         <item>80</item>
         <item>85</item>
         <item>90</item>
+    </string-array>
+    <string-array name="monthly_cycle_calculations_ranges">
+        <item>חודש מלא</item>
+        <item>2 עד 1 לחודש הבא</item>
+        <item>3 עד 2 לחודש הבא</item>
+        <item>4 עד 3 לחודש הבא</item>
+        <item>5 עד 4 לחודש הבא</item>
+        <item>6 עד 5 לחודש הבא</item>
+        <item>7 עד 6 לחודש הבא</item>
+        <item>8 עד 7 לחודש הבא</item>
+        <item>9 עד 8 לחודש הבא</item>
+        <item>10 עד 9 לחודש הבא</item>
+        <item>11 עד 10 לחודש הבא</item>
+        <item>12 עד 11 לחודש הבא</item>
+        <item>13 עד 12 לחודש הבא</item>
+        <item>14 עד 13 לחודש הבא</item>
+        <item>15 עד 14 לחודש הבא</item>
+        <item>16 עד 15 לחודש הבא</item>
+        <item>17 עד 16 לחודש הבא</item>
+        <item>18 עד 17 לחודש הבא</item>
+        <item>19 עד 18 לחודש הבא</item>
+        <item>20 עד 19 לחודש הבא</item>
+        <item>21 עד 20 לחודש הבא</item>
+        <item>22 עד 21 לחודש הבא</item>
+        <item>23 עד 22 לחודש הבא</item>
+        <item>24 עד 23 לחודש הבא</item>
+        <item>25 עד 24 לחודש הבא</item>
+        <item>26 עד 25 לחודש הבא</item>
+        <item>27 עד 26 לחודש הבא</item>
+        <item>28 עד 27 לחודש הבא</item>
+        <item>29 עד 28 לחודש הבא</item>
+        <item>30 עד 29 לחודש הבא</item>
     </string-array>
 </resources>
