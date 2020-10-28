@@ -36,6 +36,12 @@ public abstract class AppDB extends RoomDatabase {
     public abstract AdditionalHoursSettingDao additionalHoursSettingDao();
 
     public abstract TravelExpensesDao travelExpensesDao();
+
     public abstract BreakCalculationsDao breakCalculationsDao();
+
     public abstract MonthlyStartingCalculationsSettingDao monthlyStartingCalculationsSettingDao();
+
+    public abstract RatePerDaySettingDao ratePerDaySettingDao();
+
+    public abstract NotifySettingDao notifySettingDao();
 }

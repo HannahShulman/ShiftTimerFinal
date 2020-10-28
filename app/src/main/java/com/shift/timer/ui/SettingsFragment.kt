@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.shift.timer.R
 import com.shift.timer.Setting
+import com.shift.timer.SettingType
 import com.shift.timer.SettingsListAdapter
 import com.shift.timer.di.DaggerInjectHelper
 import com.shift.timer.viewmodels.SettingsViewModel
@@ -30,8 +31,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         SettingsListAdapter(::onSettingSelected)
     }
 
-    private fun onSettingSelected(setting: Setting) {
-        SettingDetailActivity.start(requireContext(), setting)
+    private fun onSettingSelected(setting: Setting, notify: Boolean = false) {
+        when(setting.type){
+            SettingType.REGULAR -> SettingDetailActivity.start(requireContext(), setting)
+            SettingType.NOTIFICATION -> saveNotifySetting(setting, notify)
+            SettingType.HEADER -> Throwable("The headers shouldn't be clickable")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +47,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         settings_list.adapter = adapter
-
+        settingSavedCallback()
         viewLifecycleOwner.lifecycleScope.launch {
             settingsViewModel.getWorkplaceById().collect {
                 workplace_title.text = it.description
@@ -75,6 +80,23 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 adapter.startDayCalculation = it
             }
         }
+        //notify on arrival
+        viewLifecycleOwner.lifecycleScope.launch {
+            settingsViewModel.shouldNotifyOnArrival().collect {
+                adapter.shouldNotifyOnLocationArrival = it
+            }
+        }
+        //notify on leave
+        viewLifecycleOwner.lifecycleScope.launch {
+            settingsViewModel.shouldNotifyOnLeave().collect {
+                adapter.shouldNotifyOnLocationLeave = it
+            }
+        } //notify on end shift
+        viewLifecycleOwner.lifecycleScope.launch {
+            settingsViewModel.shouldNotifyAfterShift().collect {
+                adapter.activeRemindAfterShift = it
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -84,6 +106,17 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun settingSavedCallback() { }
+
+    fun saveNotifySetting(setting: Setting, notify: Boolean) {
+        when(setting){
+            Setting.NOTIFY_ARRIVAL -> settingsViewModel.notifyOnArrival(notify)
+            Setting.NOTIFY_LEAVING -> settingsViewModel.notifyOnLeave(notify)
+            Setting.NOTIFY_END_OF_SHIFT -> onSettingSelected(setting, notify)
+            else-> Throwable("Should not be reaching here")
         }
     }
 }

@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.shift.timer.SpContract
 import com.shift.timer.db.*
+import com.shift.timer.extensions.toRoomIntValue
+import com.shift.timer.model.NotifyAfterShiftSetting
+import com.shift.timer.model.RatePerDaySetting
 import com.shift.timer.model.TravelExpensesSetting
 import com.shift.timer.model.Workplace
 import com.shift.timer.ui.ShiftRepository
@@ -77,9 +80,30 @@ class SettingsViewModel
             settingSaved.value = true
         }
     }
+    fun setShouldNotifyOnShiftCompletionSetting(notify: Boolean, minutes: Int) {
+        val c = viewModelScope.launch {
+            settingsRepository.setShouldNotifyOnShiftCompletionSetting(notify, minutes)
+        }
+
+        c.invokeOnCompletion {
+            settingSaved.value = true
+        }
+    }
 
     fun getTravellingExpenseSetting(): Flow<TravelExpensesSetting> {
         return settingsRepository.getTravellingExpenseSetting()
+    }
+    fun shouldNotifyOnArrival(): Flow<Boolean> {
+        return settingsRepository.shouldNotifyOnArrival()
+    }
+    fun shouldNotifyOnLeave(): Flow<Boolean> {
+        return settingsRepository.shouldNotifyOnLeave()
+    }
+    fun shouldNotifyAfterShift(): Flow<Boolean> {
+        return settingsRepository.shouldNotifyAfterShift()
+    }
+    fun getNotifyAfterShiftSetting(): Flow<NotifyAfterShiftSetting> {
+        return settingsRepository.getNotifyAfterShiftSetting()
     }
 
     fun updateTravelExpenseSetting(shouldCalculate: Boolean, singleTravelExpense: Int) {
@@ -89,6 +113,38 @@ class SettingsViewModel
 
         c.invokeOnCompletion {
             settingSaved.value = true
+        }
+    }
+    fun updateRatePerDateSetting(rates: List<DayOfWeekWithRate>) {
+        val c = viewModelScope.launch {
+            settingsRepository.updateRatePerDaySetting(rates)
+
+            setOf<Int>().count()
+        }
+
+        c.invokeOnCompletion {
+            settingSaved.value = true
+        }
+    }
+    fun notifyOnArrival(notify: Boolean) {
+        val c = viewModelScope.launch {
+            settingsRepository.notifyOnArrival(notify)
+
+            setOf<Int>().count()
+        }
+
+        c.invokeOnCompletion {
+            settingSaved.value = true
+        }
+    }
+
+    fun notifyOnLeave(notify: Boolean) {
+      viewModelScope.launch {
+            settingsRepository.notifyOnLeave(notify)
+
+            setOf<Int>().count()
+        }.invokeOnCompletion {
+          settingSaved.value = true
         }
     }
 }
@@ -112,7 +168,9 @@ class SettingsRepository @Inject constructor(
     private val additionalHoursSettingDao: AdditionalHoursSettingDao,
     private val travelExpensesDao: TravelExpensesDao,
     private val breakCalculationsDao: BreakCalculationsDao,
-    private val monthlyStartingCalculationsSettingDao: MonthlyStartingCalculationsSettingDao
+    private val monthlyStartingCalculationsSettingDao: MonthlyStartingCalculationsSettingDao,
+    private val ratePerDaySettingDao: RatePerDaySettingDao,
+    private val notifySettingDao: NotifySettingDao
 ) {
 
     val workplaces = workplaceDao.getAllWorkplaces()
@@ -151,6 +209,24 @@ class SettingsRepository @Inject constructor(
             singleTravelExpense
         )
     }
+    suspend fun updateRatePerDaySetting(rates: List<DayOfWeekWithRate>) {
+        ratePerDaySettingDao.updateRatePerDay(rates)
+    }
+    suspend fun notifyOnArrival(notify: Boolean) {
+        notifySettingDao.updateNotifyOnArrive(-1, notify.toRoomIntValue())
+    }
+    suspend fun notifyOnLeave(notify: Boolean) {
+        notifySettingDao.updateNotifyOnLeave(-1, notify.toRoomIntValue())
+    }
+    fun shouldNotifyOnArrival(): Flow<Boolean> {
+        return notifySettingDao.notifyOnArrive(-1)
+    }
+    fun shouldNotifyOnLeave(): Flow<Boolean> {
+        return notifySettingDao.notifyOnLeave(-1)
+    }
+    fun shouldNotifyAfterShift(): Flow<Boolean> {
+        return notifySettingDao.shouldNotifyOnShiftCompletion(-1)
+    }
 
     fun getTravellingExpenseSetting(): Flow<TravelExpensesSetting> {
         return travelExpensesDao.getTravellingExpenseSetting(-1)
@@ -163,11 +239,18 @@ class SettingsRepository @Inject constructor(
     fun getDayOfMonthlyCycle(): Flow<Int> {
         return monthlyStartingCalculationsSettingDao.dayStartingCalculation(-1)
     }
+    fun getNotifyAfterShiftSetting(): Flow<NotifyAfterShiftSetting> {
+        return notifySettingDao.getNotifyOnShiftCompletionSetting(-1)
+    }
 
     suspend fun setBreakMinutesToDeduct(minutesToDeduct: Int){
         breakCalculationsDao.setBreakMinutesToDeduct(-1, minutesToDeduct)
     }
     suspend fun startMonthlyCalculationCycle(dayOfMonth: Int){
         monthlyStartingCalculationsSettingDao.startMonthlyCalculationCycle(-1, dayOfMonth)
+    }
+
+    suspend fun setShouldNotifyOnShiftCompletionSetting(notify: Boolean, minutes: Int){
+        notifySettingDao.setShouldNotifyOnShiftCompletionSetting(notify, minutes)
     }
 }

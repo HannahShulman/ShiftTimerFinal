@@ -20,6 +20,8 @@ import com.shift.timer.db.AdditionalHoursSettingDao;
 import com.shift.timer.db.AppDB;
 import com.shift.timer.db.BreakCalculationsDao;
 import com.shift.timer.db.MonthlyStartingCalculationsSettingDao;
+import com.shift.timer.db.NotifySettingDao;
+import com.shift.timer.db.RatePerDaySettingDao;
 import com.shift.timer.db.ShiftDao;
 import com.shift.timer.db.TravelExpensesDao;
 import com.shift.timer.db.WageSettingDao;
@@ -132,6 +134,17 @@ public class NetModule {
     @Singleton
     ShiftDao provideShiftDao(AppDB db) {
         return db.shiftDao();
+    }
+
+    @Provides
+    @Singleton
+    RatePerDaySettingDao provideRatePerDaySettingDao(AppDB db) {
+        return db.ratePerDaySettingDao();
+    }
+    @Provides
+    @Singleton
+    NotifySettingDao provideNotifySettingDao(AppDB db) {
+        return db.notifySettingDao();
     }
 
     @Provides

@@ -34,11 +34,11 @@ class SettingDetailActivity : AppCompatActivity() {
             Setting.TRAVELING_EXPENSES -> TravelExpensesSettingFragment()
             Setting.BREAKS -> BreaksSettingFragment()
             Setting.MONTH_DATE_CALCULATIONS -> MonthlyCalculationCycleFragment()
-//            Setting.RATE_PER_DAY -> BreaksSettingFragment()
-//            Setting.NOTIFY_ARRIVAL -> BreaksSettingFragment()
-//            Setting.NOTIFY_LEAVING -> BreaksSettingFragment()
-//            Setting.NOTIFY_END_OF_SHIFT -> BreaksSettingFragment()
-            else -> BreaksSettingFragment()
+            Setting.RATE_PER_DAY -> RatePerDaySettingFragment()
+            Setting.NOTIFY_END_OF_SHIFT -> NotifyEndOfShiftSettingFragment()
+            else -> BreaksSettingFragment().also {
+                Throwable("Setting selected should not display a setting fragment")
+            }
         }
 
         if (savedInstanceState == null) {

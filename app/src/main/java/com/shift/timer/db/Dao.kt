@@ -1,16 +1,10 @@
 package com.shift.timer.db
 
-import androidx.room.Dao
-import androidx.room.Insert
+import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
-import androidx.room.Update
-import com.shift.timer.model.Shift
-import com.shift.timer.model.TravelExpensesSetting
-import com.shift.timer.model.WageSetting
-import com.shift.timer.model.Workplace
+import com.shift.timer.extensions.toRoomIntValue
+import com.shift.timer.model.*
 import kotlinx.coroutines.flow.Flow
-import java.util.*
 
 @Dao
 interface ShiftDao {
@@ -61,6 +55,7 @@ interface WageSettingDao {
     suspend fun setHourlyPayment(workplaceId: Int, cents: Int)
 
 }
+
 @Dao
 interface AdditionalHoursSettingDao {
 
@@ -78,6 +73,7 @@ interface AdditionalHoursSettingDao {
     @Query("UPDATE AdditionalHoursSetting SET  regularRateMinutes=:minutes WHERE id =:workplaceId ")
     suspend fun setMinutesPaidRegularRate(workplaceId: Int, minutes: Int)
 }
+
 @Dao
 interface TravelExpensesDao {
 
@@ -94,7 +90,11 @@ interface TravelExpensesDao {
 
 
     @Query("UPDATE TravelExpensesSetting SET shouldCalculate=:shouldCalculate,  singleTravelExpense=:singleExpense WHERE id =:workplaceId")
-    suspend fun updateTravelExpenseSetting(workplaceId: Int, shouldCalculate: Int, singleExpense: Int)
+    suspend fun updateTravelExpenseSetting(
+        workplaceId: Int,
+        shouldCalculate: Int,
+        singleExpense: Int
+    )
 }
 
 @Dao
@@ -107,13 +107,75 @@ interface BreakCalculationsDao {
     @Query("UPDATE BreakCalculationsSetting SET minutesToDeduct=:minutesToDeduct WHERE id =:workplaceId")
     suspend fun setBreakMinutesToDeduct(workplaceId: Int, minutesToDeduct: Int)
 }
+
 @Dao
 interface MonthlyStartingCalculationsSettingDao {
 
     //minutes above limited will be calculated with higher rates
     @Query("SELECT dayOfMonth FROM MonthlyStartingCalculationsSetting WHERE workplaceId =:workplaceId ")
     fun dayStartingCalculation(workplaceId: Int): Flow<Int>
+
     //minutes above limited will be calculated with higher rates
     @Query("UPDATE MonthlyStartingCalculationsSetting SET dayOfMonth=:dayOfMonth WHERE id =:workplaceId")
     suspend fun startMonthlyCalculationCycle(workplaceId: Int, dayOfMonth: Int)
+}
+
+data class DayOfWeekWithRate(val dayOfWeek: Int, val rate: Int)
+
+@Dao
+interface RatePerDaySettingDao {
+
+    @Query("UPDATE RatePerDaySetting SET rate=:rate WHERE dayOfWeek=:dayOfWeek AND workplaceId =:workpalceId")
+    fun updateRatePerDay(workpalceId: Int, dayOfWeek: Int, rate: Int)
+
+    @Transaction
+    suspend fun updateRatePerDay(rates: List<DayOfWeekWithRate>) {
+        for (i in rates) {
+            updateRatePerDay(-1, i.dayOfWeek, i.rate)
+        }
+    }
+}
+
+@Dao
+interface NotifySettingDao {
+
+    @Insert(onConflict = REPLACE)
+    fun insert(setting: NotifyOnArrivalSetting)
+
+    @Insert(onConflict = REPLACE)
+    fun insert(setting: NotifyOnLeaveSetting)
+
+    @Query("UPDATE NotifyOnArrivalSetting SET shouldNotify=:notify WHERE workplaceId =:workpalceId")
+    suspend fun updateNotifyOnArrive(workpalceId: Int, notify: Int)
+
+    @Query("UPDATE NotifyOnLeaveSetting SET shouldNotify=:notify WHERE workplaceId =:workpalceId")
+    suspend fun updateNotifyOnLeave(workpalceId: Int, notify: Int)
+
+    @Query("SELECT shouldNotify FROM NotifyOnArrivalSetting WHERE workplaceId =:workpalceId")
+    fun notifyOnArrive(workpalceId: Int): Flow<Boolean>
+
+    @Query("SELECT shouldNotify FROM NotifyOnLeaveSetting WHERE workplaceId =:workpalceId")
+    fun notifyOnLeave(workpalceId: Int): Flow<Boolean>
+
+    @Query("SELECT * FROM NotifyAfterShiftSetting WHERE workplaceId =:workpalceId")
+    fun getNotifyOnShiftCompletionSetting(workpalceId: Int): Flow<NotifyAfterShiftSetting>
+
+    @Query("SELECT shouldNotify FROM NotifyAfterShiftSetting WHERE workplaceId =:workpalceId")
+    fun shouldNotifyOnShiftCompletion(workpalceId: Int): Flow<Boolean>
+
+//    @Query("UPDATE NotifyAfterShiftSetting SET shouldNotify=:notify, remindAfter=:minutes  WHERE workplaceId =:workpalceId")
+//    suspend fun setShouldNotifyOnShiftCompletion(workpalceId: Int, notify: Int, minutes: Int)
+
+
+    @Query("UPDATE NotifyAfterShiftSetting SET shouldNotify=:notify WHERE workplaceId =:workpalceId")
+    suspend fun setShouldNotifyOnShiftCompletion(workpalceId: Int, notify: Int)
+
+    @Query("UPDATE NotifyAfterShiftSetting SET remindAfter=:minutes  WHERE workplaceId =:workpalceId")
+    suspend fun setRemindAfterNotifyOnShiftCompletion(workpalceId: Int, minutes: Int)
+
+    @Transaction
+    suspend fun setShouldNotifyOnShiftCompletionSetting(notify: Boolean, minutes: Int) {
+        setRemindAfterNotifyOnShiftCompletion(-1, minutes)
+        setShouldNotifyOnShiftCompletion(-1, notify.toRoomIntValue())
+    }
 }

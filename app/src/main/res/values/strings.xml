@@ -50,6 +50,11 @@
     <string name="breaks_calculation_exp">זמן הפסקה לא יופחת ממשמרת של פחות מ-6 שעות</string>
     <string name="calculate_full_month">מתחילת יד סוף החודש</string>
     <string name="calculate_cycle_from_to" >המשכורת תחושב מה %d עד %d לחודש הבא</string>
+    <string name="remind_me_to_leave">"הזכר לי לצאת ממשמרת  "</string>
+    <string name="remind_me_time_after_shift_begins_with_minutes">לאחר %d שעות ו%d דקות לאחר תחילת המשמרת</string>
+    <string name="remind_me_time_after_shift_begins">לאחר %d שעות לאחר תחילת המשמרת</string>
+    <string name="active">פעיל</string>
+    <string name="not_active">לא פעיל</string>
 
     <string-array name="additional_hours_options">
         <item>לא לחשב</item>
