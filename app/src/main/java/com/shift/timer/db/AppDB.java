@@ -4,6 +4,15 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.shift.timer.dao.AdditionalHoursSettingDao;
+import com.shift.timer.dao.BreakCalculationsDao;
+import com.shift.timer.dao.MonthlyStartingCalculationsSettingDao;
+import com.shift.timer.dao.NotifySettingDao;
+import com.shift.timer.dao.RatePerDaySettingDao;
+import com.shift.timer.dao.ShiftDao;
+import com.shift.timer.dao.TravelExpensesDao;
+import com.shift.timer.dao.WageSettingDao;
+import com.shift.timer.dao.WorkplaceDao;
 import com.shift.timer.model.AdditionalHoursSetting;
 import com.shift.timer.model.BreakCalculationsSetting;
 import com.shift.timer.model.MonthlyStartingCalculationsSetting;
@@ -12,9 +21,6 @@ import com.shift.timer.model.TravelExpensesSetting;
 import com.shift.timer.model.WageSetting;
 import com.shift.timer.model.Workplace;
 
-/**
- * Created by roy on 5/31/2017.
- */
 @Database(entities = {Shift.class,
         Workplace.class,
         WageSetting.class,

@@ -3,6 +3,7 @@ package com.shift.timer.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.shift.timer.Setting
 import com.shift.timer.viewmodels.EditShiftData
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -51,7 +52,9 @@ fun Shift.totalTimeInMinutes(): Long {
 }
 
 @Entity
-data class Workplace(@PrimaryKey(autoGenerate = true) val id: Int = 0, val description: String)
+data class Workplace(@PrimaryKey(autoGenerate = true) val workplaceId: Int = 0, val description: String ="")
+
+data class WorkplaceWithSettings(val workplaceId: Int, val settings: List<Setting>)
 
 
 enum class WageRatePercentage(val value: Int) {

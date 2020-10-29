@@ -3,8 +3,8 @@ package com.shift.timer.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.shift.timer.model.Shift
-import com.shift.timer.ui.ShiftRepository
-import com.shift.timer.ui.WorkplaceRepository
+import com.shift.timer.repositories.ShiftRepository
+import com.shift.timer.repositories.WorkplaceRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

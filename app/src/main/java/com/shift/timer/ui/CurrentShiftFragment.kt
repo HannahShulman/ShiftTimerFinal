@@ -20,15 +20,16 @@ import com.shift.timer.Constants.hourMinuteDateFormat
 import com.shift.timer.R
 import com.shift.timer.SpContract
 import com.shift.timer.animations.RevealAnimationSetting
+import com.shift.timer.dao.ShiftDao
+import com.shift.timer.dao.WageSettingDao
 import com.shift.timer.databinding.FragmentCurrentShiftBinding
-import com.shift.timer.db.ShiftDao
-import com.shift.timer.db.WageSettingDao
-import com.shift.timer.db.WorkplaceDao
 import com.shift.timer.di.DaggerInjectHelper
 import com.shift.timer.model.Shift
 import com.shift.timer.model.Workplace
 import com.shift.timer.throttledClickListener
 import com.shift.timer.viewBinding
+import com.shift.timer.viewmodels.CurrentShiftViewModel
+import com.shift.timer.viewmodels.CurrentShiftViewModelFactory
 import com.shift.timer.viewmodels.EditShiftData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -272,105 +273,6 @@ class CurrentShiftFragment : Fragment(R.layout.fragment_current_shift) {
             R.string.time_format, String.format("%02d", hours),
             String.format("%02d", minutes), String.format("%02d", seconds)
         )
-    }
-}
-
-class CurrentShiftViewModel(
-    private val repository: ShiftRepository,
-    private val workplaceRepository: WorkplaceRepository
-) : ViewModel() {
-
-    suspend fun enterShift() {
-        repository.startShift()
-    }
-
-    suspend fun endShift(shift: Shift) {
-        repository.endShift(shift)
-    }
-
-    val currentShift = repository.getCurrentShift
-
-    private val workplaces = workplaceRepository.workplaces
-
-    val hasMultipleWorkplaces: Flow<Boolean> = workplaces.mapLatest { it.size > 1 }
-
-    val shiftLengthInSeconds = MutableStateFlow(9.times(60).times(60))
-
-    val selectedWorkplace: Flow<Workplace> = workplaceRepository.selectedWorkplace()
-
-    fun getShiftById(id: Int): Flow<Shift> {
-        return repository.getShiftById(id)
-    }
-}
-
-class CurrentShiftViewModelFactory @Inject constructor(
-    private val repository: ShiftRepository,
-    private val workplaceRepository: WorkplaceRepository
-) : ViewModelProvider.Factory {
-
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return CurrentShiftViewModel(repository, workplaceRepository) as T
-    }
-}
-
-class ShiftRepository @Inject constructor(
-    private val spContract: SpContract,
-    private val shiftDao: ShiftDao,
-    private val wageSettingDao: WageSettingDao
-) {
-
-    suspend fun startShift() {
-        GlobalScope.launch {
-            val wage = wageSettingDao.getWorkplaceById(spContract.workplaceId)
-            val paymentForHourShift = wage.wage//per hour cents
-            shiftDao.insertShift(
-                Shift(
-                    workplaceId = spContract.workplaceId,
-                    start = Date(),
-                    end = null,
-                    payment = paymentForHourShift.toLong()
-                )
-            )
-        }
-    }
-
-    suspend fun endShift(shift: Shift) {
-        val endTime = Date()
-        GlobalScope.launch {
-            shift.copy(end = endTime).also {
-                shiftDao.endShift(it)
-            }
-        }
-    }
-
-    fun getShiftById(id: Int): Flow<Shift> {
-        return shiftDao.getShiftById(id)
-    }
-
-    suspend fun updateShiftData(data: EditShiftData) {
-        return shiftDao.updateShift(
-            data.id,
-            data.start.time,
-            data.end.time,
-            data.rate,
-            data.note,
-            data.bonus
-        )
-    }
-
-    val getCurrentShift = shiftDao.getCurrentShift()
-}
-
-class WorkplaceRepository @Inject constructor(
-    private val spContract: SpContract,
-    private val workplaceDao: WorkplaceDao
-) {
-
-    val workplaces = workplaceDao.getAllWorkplaces()
-
-    fun selectedWorkplace(): Flow<Workplace> {
-        return workplaceDao.getWorkplaceById(spContract.workplaceId)
     }
 }
 

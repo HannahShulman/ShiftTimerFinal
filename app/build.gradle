@@ -39,7 +39,19 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            buildConfigField "boolean", "DISABLE_ANIMATIONS", "true"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            applicationIdSuffix ".debug"
+            buildConfigField "boolean", "DISABLE_ANIMATIONS", "true"
+        }
+    }
+
+    testOptions{
+        unitTests{
+            includeAndroidResources = true
         }
     }
 }
@@ -240,7 +252,6 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin'
     }
 
-    testImplementation 'org.robolectric:robolectric:4.3.1'
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
     androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
     testImplementation "com.google.truth:truth:1.0.1"
@@ -278,5 +289,7 @@ dependencies {
     implementation 'com.timehop.stickyheadersrecyclerview:library:0.4.3'
     implementation 'com.shuhart.stickyheader:stickyheader:1.0.6'
     implementation 'cn.aigestudio.wheelpicker:WheelPicker:1.1.3'
+    implementation 'com.github.tfcporciuncula.flow-preferences:flow-preferences:1.3.2'
+    testImplementation 'org.robolectric:robolectric:4.3.1'
 
 }

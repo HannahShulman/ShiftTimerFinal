@@ -1,11 +1,10 @@
-package com.shift.timer.custom_uii;
+package com.shift.timer.custom_ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 
 public class CircleView extends ImageView
