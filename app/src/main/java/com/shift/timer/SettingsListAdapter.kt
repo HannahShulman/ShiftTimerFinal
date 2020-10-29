@@ -8,7 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.switchmaterial.SwitchMaterial
 
-class SettingsListAdapter(val settingClickListener:(setting: Setting)-> Unit) : RecyclerView.Adapter<SettingsListAdapter.ViewHolder>(){
+class SettingsListAdapter(val settingClickListener: (setting: Setting, notify: Boolean) -> Unit) :
+    RecyclerView.Adapter<SettingsListAdapter.SettingViewHolder>() {
+
+    abstract class SettingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val title = itemView.findViewById<TextView>(R.id.title)
+        val icon = itemView.findViewById<ImageView>(R.id.icon)
+    }
 
     class ViewHolder(itemView: View) : SettingViewHolder(itemView) {
         val value = itemView.findViewById<TextView>(R.id.value)
@@ -122,16 +128,22 @@ class SettingsListAdapter(val settingClickListener:(setting: Setting)-> Unit) : 
         holder.icon.setImageResource(data[position].icon)
         holder.value.text = when (data[position]) {
             Setting.HOURLY_PAYMENT -> context.getString(R.string.total_payment, hourlyPayment)
-            Setting.ADDITIONAL_HOURS_CALCULATION -> startHigherRatePaymentFrom.toString().removeTrailingZero()
+            Setting.ADDITIONAL_HOURS_CALCULATION -> startHigherRatePaymentFrom.toString()
+                .removeTrailingZero()
                 .takeIf { startHigherRatePaymentFrom > 0 }
                 ?: context.getString(R.string.dont_calculate)
             Setting.TRAVELING_EXPENSES -> context.getString(R.string.calculate.takeIf { calculateTravelExpenses }
                 ?: R.string.dont_calculate)
-            Setting.BREAKS -> context.getString(R.string.total_time, minutesToDeduct.toString()).takeIf { minutesToDeduct > 0 }
+            Setting.BREAKS -> context.getString(R.string.total_time, minutesToDeduct.toString())
+                .takeIf { minutesToDeduct > 0 }
                 ?: context.getString(R.string.dont_calculate)
             Setting.MONTH_DATE_CALCULATIONS -> when (startDayCalculation) {
                 1 -> context.getString(R.string.payment_cycle, startDayCalculation, 30)
-                else -> context.getString(R.string.payment_cycle, startDayCalculation, startDayCalculation - 1)
+                else -> context.getString(
+                    R.string.payment_cycle,
+                    startDayCalculation,
+                    startDayCalculation - 1
+                )
             }
             Setting.RATE_PER_DAY -> ""
             Setting.NOTIFY_ARRIVAL -> ""

@@ -2,6 +2,8 @@ package com.shift.timer;
 
 import android.content.SharedPreferences;
 
+import com.tfcporciuncula.flow.FlowSharedPreferences;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -55,25 +57,6 @@ public class SpContract {
     public static final int NO_MESSAGE_ID = -1;
 
     private SharedPreferences sp;
-
-
-    public MutableStateFlow<Integer> workplaceIdFlow = new MutableStateFlow<Integer>() {
-        @Override
-        public Integer getValue() {
-            return getWorkplaceId();
-        }
-
-        @Override
-        public void setValue(Integer integer) {
-            setWorkplaceId(integer);
-        }
-
-        @Nullable
-        @Override
-        public Object collect(@NotNull FlowCollector<? super Integer> flowCollector, @NotNull Continuation<? super Unit> continuation) {
-            return getValue();
-        }
-    };
 
     @Inject
     public SpContract(SharedPreferences sp) {

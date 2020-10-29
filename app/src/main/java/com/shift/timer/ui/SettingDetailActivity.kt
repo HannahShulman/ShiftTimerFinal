@@ -1,5 +1,6 @@
 package com.shift.timer.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -43,6 +44,7 @@ class SettingDetailActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
+//                setCustomAnimations(R.anim.enter_from_bottom, R.anim.exit_to_bottom)
                 replace(R.id.fragment_container, fragment)
             }
         }
@@ -81,6 +83,7 @@ class SettingDetailActivity : AppCompatActivity() {
             val intent = Intent(context, SettingDetailActivity::class.java)
             intent.putExtra(SETTING_NAME, setting.name)
             context.startActivity(intent)
+            (context as? AppCompatActivity)?.overridePendingTransition(R.anim.enter_from_bottom, R.anim.exit_to_bottom)
         }
     }
 }
