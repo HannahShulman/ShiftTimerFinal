@@ -1,6 +1,5 @@
 package com.shift.timer.ui
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -25,21 +24,25 @@ class SettingDetailActivity : AppCompatActivity() {
 
         val setting =
             Setting.values().firstOrNull { it.name == intent.getStringExtra(SETTING_NAME) }
-                ?: Setting.HOURLY_PAYMENT
+                ?: Setting.SALARY
 
         supportActionBar?.title = getString(setting.title)
 
         val fragment: Fragment = when (setting) {
-            Setting.HOURLY_PAYMENT -> HourlyPaymentSettingFragment()
+            Setting.SALARY -> HourlyPaymentSettingFragment()
             Setting.ADDITIONAL_HOURS_CALCULATION -> AdditionalHoursSettingFragment()
             Setting.TRAVELING_EXPENSES -> TravelExpensesSettingFragment()
             Setting.BREAKS -> BreaksSettingFragment()
             Setting.MONTH_DATE_CALCULATIONS -> MonthlyCalculationCycleFragment()
             Setting.RATE_PER_DAY -> RatePerDaySettingFragment()
-            Setting.NOTIFY_END_OF_SHIFT -> NotifyEndOfShiftSettingFragment()
+//            Setting.NOTIFY_END_OF_SHIFT -> NotifyEndOfShiftSettingFragment()
+            Setting.SICK_DAYS -> BreaksSettingFragment().also {
+                Throwable("Implement Sick days fragment")
+            }
             else -> BreaksSettingFragment().also {
                 Throwable("Setting selected should not display a setting fragment")
             }
+
         }
 
         if (savedInstanceState == null) {

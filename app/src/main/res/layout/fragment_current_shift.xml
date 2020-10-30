@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkestBlue">
+    android:background="@color/darkBlue">
 
     <ImageView
         android:id="@+id/info_icon"
@@ -63,7 +63,7 @@
         app:cpv_barColor="@color/transparent"
         app:cpv_barStrokeCap="Round"
         app:cpv_barWidth="8dp"
-        app:cpv_fillColor="@color/darkestBlue"
+        app:cpv_fillColor="@color/darkBlue"
         app:cpv_innerContourColor="@color/transparent"
         app:cpv_outerContourColor="@color/transparent"
         app:cpv_rimColor="@color/transparent"

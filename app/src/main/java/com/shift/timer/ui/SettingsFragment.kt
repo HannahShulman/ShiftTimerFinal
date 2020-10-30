@@ -9,9 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.shift.timer.R
 import com.shift.timer.Setting
-import com.shift.timer.SettingType
 import com.shift.timer.SettingsListAdapter
 import com.shift.timer.di.DaggerInjectHelper
+import com.shift.timer.throttledClickListener
 import com.shift.timer.viewmodels.SettingsViewModel
 import com.shift.timer.viewmodels.SettingsViewModelFactory
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -31,12 +31,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         SettingsListAdapter(::onSettingSelected)
     }
 
-    private fun onSettingSelected(setting: Setting, notify: Boolean = false) {
-        when(setting.type){
-            SettingType.REGULAR -> SettingDetailActivity.start(requireContext(), setting)
-            SettingType.NOTIFICATION -> saveNotifySetting(setting, notify)
-            SettingType.HEADER -> Throwable("The headers shouldn't be clickable")
-        }
+    private fun onSettingSelected(setting: Setting) {
+        SettingDetailActivity.start(requireContext(), setting)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +43,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         settings_list.adapter = adapter
+        workplace_title.throttledClickListener {
+            Toast.makeText(
+                requireContext(),
+                "Workplace clicked",
+                Toast.LENGTH_SHORT
+            ).show() }
         settingSavedCallback()
         viewLifecycleOwner.lifecycleScope.launch {
             settingsViewModel.getWorkplaceById().collect {
@@ -114,8 +116,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     fun saveNotifySetting(setting: Setting, notify: Boolean) {
         when(setting){
             Setting.NOTIFY_ARRIVAL -> settingsViewModel.notifyOnArrival(notify)
-            Setting.NOTIFY_LEAVING -> settingsViewModel.notifyOnLeave(notify)
-            Setting.NOTIFY_END_OF_SHIFT -> onSettingSelected(setting, notify)
+//            Setting.NOTIFY_LEAVING -> settingsViewModel.notifyOnLeave(notify)
+//            Setting.NOTIFY_END_OF_SHIFT -> onSettingSelected(setting, notify)
             else-> Throwable("Should not be reaching here")
         }
     }

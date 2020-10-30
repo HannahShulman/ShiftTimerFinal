@@ -5,8 +5,9 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="cayanSelection">#00D3FC</color>
     <color name="mainCayan">#03DAC5</color>
-    <color name="darkestBlue">#030640</color>
+    <color name="darkestBlue">#151b33</color>
     <color name="darkBlue">#2C2F4B</color>
+    <color name="darkBlue_faded">#2C2F4B</color>
     <color name="inActiveGrey">#535571</color>
 
 
@@ -91,4 +92,7 @@
     <color name="timer_grey">#F5F5F5</color>
     <color name="timer_text_purple">#BAB9E5</color>
     <color name="timer_green_turquize">#0EF4D9</color>
+    <color name="blue_grey">#373a5a</color>
+    <color name="cayan_selection">#00d3fc</color>
+    <color name="in_activity_grey">#535571</color>
 </resources>
