@@ -44,11 +44,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         super.onViewCreated(view, savedInstanceState)
         settings_list.adapter = adapter
         workplace_title.throttledClickListener {
-            Toast.makeText(
-                requireContext(),
-                "Workplace clicked",
-                Toast.LENGTH_SHORT
-            ).show() }
+
+             }
         settingSavedCallback()
         viewLifecycleOwner.lifecycleScope.launch {
             settingsViewModel.getWorkplaceById().collect {
