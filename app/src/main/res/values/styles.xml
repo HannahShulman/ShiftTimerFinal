@@ -23,7 +23,7 @@
 
     <style name="main_activity_style" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/darkBlue</item>
+        <item name="colorPrimaryDark">@color/darkestBlue</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>

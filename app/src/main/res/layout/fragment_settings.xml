@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/darkestBlue">
 
-    <ImageView
+    <View
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="56dp"
-        android:src="@drawable/work_place_bg_image"
+        android:background="@drawable/work_place_bg_image"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
