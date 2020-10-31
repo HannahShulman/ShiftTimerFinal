@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.switchmaterial.SwitchMaterial
 
-class SettingsListAdapter(val settingClickListener: (setting: Setting) -> Unit) :
+class SettingsListAdapter(val settingClickListener: (setting: Setting, view: View) -> Unit) :
     RecyclerView.Adapter<SettingsListAdapter.SettingViewHolder>() {
 
     class SettingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -67,12 +68,12 @@ class SettingsListAdapter(val settingClickListener: (setting: Setting) -> Unit) 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SettingViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return SettingViewHolder(
-                inflater.inflate(
-                    R.layout.single_setting_item_layout,
-                    parent,
-                    false
-                )
+            inflater.inflate(
+                R.layout.single_setting_item_layout,
+                parent,
+                false
             )
+        )
     }
 
     override fun getItemCount(): Int = data.size
@@ -80,7 +81,9 @@ class SettingsListAdapter(val settingClickListener: (setting: Setting) -> Unit) 
     override fun onBindViewHolder(holder: SettingViewHolder, position: Int) {
         val context = holder.itemView.context
         holder.title.text = holder.itemView.context.getString(data[position].title)
-        holder.itemView.setOnClickListener { settingClickListener(data[position]) }
+        holder.itemView.setOnClickListener {
+            settingClickListener(data[position], holder.itemView)
+        }
         holder.icon.setImageResource(data[position].icon)
         holder.value.text = when (data[position]) {
             Setting.SALARY -> context.getString(R.string.total_payment, hourlyPayment)
@@ -103,8 +106,6 @@ class SettingsListAdapter(val settingClickListener: (setting: Setting) -> Unit) 
             }
             Setting.RATE_PER_DAY -> ""
             Setting.NOTIFY_ARRIVAL -> ""
-//            Setting.NOTIFY_END_OF_SHIFT -> context.getString(R.string.active)
-//                .takeIf { activeRemindAfterShift } ?: context.getString(R.string.not_active)
             Setting.SICK_DAYS -> ""
         }
     }

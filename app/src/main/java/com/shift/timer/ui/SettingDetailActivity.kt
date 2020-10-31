@@ -5,13 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.fragment.app.commit
 import com.shift.timer.R
 import com.shift.timer.Setting
-import com.shift.timer.ui.settingfragments.*
+import com.shift.timer.extensions.getFragmentBySetting
 import kotlinx.coroutines.InternalCoroutinesApi
 
 class SettingDetailActivity : AppCompatActivity() {
@@ -21,33 +23,15 @@ class SettingDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting_detail)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val setting =
             Setting.values().firstOrNull { it.name == intent.getStringExtra(SETTING_NAME) }
                 ?: Setting.SALARY
-
         supportActionBar?.title = getString(setting.title)
 
-        val fragment: Fragment = when (setting) {
-            Setting.SALARY -> HourlyPaymentSettingFragment()
-            Setting.ADDITIONAL_HOURS_CALCULATION -> AdditionalHoursSettingFragment()
-            Setting.TRAVELING_EXPENSES -> TravelExpensesSettingFragment()
-            Setting.BREAKS -> BreaksSettingFragment()
-            Setting.MONTH_DATE_CALCULATIONS -> MonthlyCalculationCycleFragment()
-            Setting.RATE_PER_DAY -> RatePerDaySettingFragment()
-            Setting.SICK_DAYS -> BreaksSettingFragment().also {
-                Throwable("Implement Sick days fragment")
-            }
-            else -> BreaksSettingFragment().also {
-                Throwable("Setting selected should not display a setting fragment")
-            }
-
-        }
 
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
-//                setCustomAnimations(R.anim.enter_from_bottom, R.anim.exit_to_bottom)
-                replace(R.id.fragment_container, fragment)
+                replace(R.id.fragment_container, getFragmentBySetting(setting))
             }
         }
 
@@ -81,16 +65,21 @@ class SettingDetailActivity : AppCompatActivity() {
 
     companion object {
         const val SETTING_NAME = "setting_name"
-        fun start(context: Context, setting: Setting) {
+        fun start(context: Context, setting: Setting, view: View) {
             val intent = Intent(context, SettingDetailActivity::class.java)
             intent.putExtra(SETTING_NAME, setting.name)
-            context.startActivity(intent)
-            (context as? AppCompatActivity)?.overridePendingTransition(R.anim.enter_from_bottom, R.anim.exit_to_bottom)
+            val pair2 = Pair<View, String>(view, "imageTransition")
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as AppCompatActivity, pair2)
+            context.startActivity(intent, options.toBundle())
+            (context as? AppCompatActivity)?.overridePendingTransition(
+                R.anim.enter_from_bottom,
+                R.anim.exit_to_bottom
+            )
         }
     }
 }
 
-interface SettingSaveable{
+interface SettingSaveable {
     fun settingSavedCallback()
     fun saveSetting()
 }

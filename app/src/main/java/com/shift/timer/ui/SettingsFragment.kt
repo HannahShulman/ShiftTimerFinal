@@ -29,12 +29,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private val settingsViewModel: SettingsViewModel by viewModels { factory }
 
-    val adapter: SettingsListAdapter by lazy {
+    private val adapter: SettingsListAdapter by lazy {
         SettingsListAdapter(::onSettingSelected)
     }
 
-    private fun onSettingSelected(setting: Setting) {
-        SettingDetailActivity.start(requireContext(), setting)
+    private fun onSettingSelected(setting: Setting, view: View) {
+        SettingDetailActivity.start(requireContext(), setting, view)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
