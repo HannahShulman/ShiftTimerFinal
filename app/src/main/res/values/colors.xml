@@ -9,11 +9,9 @@
     <color name="darkBlue">#2C2F4B</color>
     <color name="darkBlue_faded">#2C2F4B</color>
     <color name="inActiveGrey">#535571</color>
-    <color name="banner_color">#ffa200</color>
-    <color name="timer_grey">#F5F5F5</color>
     <color name="timer_text_purple">#BAB9E5</color>
-    <color name="timer_green_turquize">#0EF4D9</color>
-    <color name="blue_grey">#373a5a</color>
-    <color name="cayan_selection">#00d3fc</color>
-    <color name="in_activity_grey">#535571</color>
+    <color name="start_gradient">#37395A</color>
+    <color name="end_gradient">#37395A</color>
+    <color name="primary_gray">#808080</color>
+    <color name="primary_blue">#030668</color>
 </resources>

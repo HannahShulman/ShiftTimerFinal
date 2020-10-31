@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:expansion_headerIndicator="@color/primary_blue"
+        app:expansion_headerIndicator="@color/darkBlue"
         app:expansion_layout="@id/rate_expansion_layout"
         app:expansion_toggleOnClick="true">
 
@@ -42,7 +42,7 @@
                 segmentedgroup:sc_border_width="2dp"
                 segmentedgroup:sc_checked_text_color="@color/primary_gray"
                 segmentedgroup:sc_corner_radius="10dp"
-                segmentedgroup:sc_tint_color="@color/white">
+                segmentedgroup:sc_tint_color="@android:color/white">
 
                 <RadioButton
                     android:id="@+id/percent_200"

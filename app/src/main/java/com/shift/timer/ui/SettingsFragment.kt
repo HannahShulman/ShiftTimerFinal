@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.shift.timer.R
 import com.shift.timer.Setting
 import com.shift.timer.SettingsListAdapter
@@ -19,6 +22,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
+import kotlin.math.abs
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
@@ -43,9 +47,14 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         settings_list.adapter = adapter
-        workplace_title.throttledClickListener {
 
-             }
+        app_bar_layout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            more_workplace_opt.isVisible = abs(verticalOffset) >= appBarLayout.totalScrollRange
+
+        })
+        workplace_title.throttledClickListener {
+            BottomSheetDialogFragment().show(parentFragmentManager, "")
+        }
         settingSavedCallback()
         viewLifecycleOwner.lifecycleScope.launch {
             settingsViewModel.getWorkplaceById().collect {
@@ -108,14 +117,14 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
     }
 
-    fun settingSavedCallback() { }
+    fun settingSavedCallback() {}
 
     fun saveNotifySetting(setting: Setting, notify: Boolean) {
-        when(setting){
+        when (setting) {
             Setting.NOTIFY_ARRIVAL -> settingsViewModel.notifyOnArrival(notify)
 //            Setting.NOTIFY_LEAVING -> settingsViewModel.notifyOnLeave(notify)
 //            Setting.NOTIFY_END_OF_SHIFT -> onSettingSelected(setting, notify)
-            else-> Throwable("Should not be reaching here")
+            else -> Throwable("Should not be reaching here")
         }
     }
 }

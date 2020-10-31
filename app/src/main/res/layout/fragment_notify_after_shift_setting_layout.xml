@@ -15,7 +15,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/primary_light_blue"
+        android:background="@color/cayanSelection"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline" />
 
@@ -28,7 +28,7 @@
         android:checked="false"
         app:layout_constraintBottom_toTopOf="@id/calculate_from"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:thumbTint="@color/primary_light_blue" />
+        app:thumbTint="@color/cayanSelection" />
 
 
     <TextView
@@ -38,7 +38,7 @@
         android:layout_marginRight="24dp"
         android:layout_marginBottom="16dp"
         android:text="@string/remind_me_to_leave"
-        android:textColor="@color/primary_light_blue"
+        android:textColor="@color/cayanSelection"
         app:layout_constraintBottom_toBottomOf="@id/remind_toggle"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/remind_toggle" />
@@ -59,7 +59,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/guideline"
         app:layout_constraintLeft_toLeftOf="parent"

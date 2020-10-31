@@ -30,7 +30,7 @@ abstract class SettingBaseFragment(layout: Int) : Fragment(layout),
             if (it) {
                 view?.let { v ->
                     Snackbar.make(v, "השינויים נשמרו בהצלחה", Snackbar.LENGTH_SHORT)
-                        .setBackgroundTint(resources.getColor(R.color.banner_blue)).show()
+                        .setBackgroundTint(resources.getColor(R.color.cayanSelection)).show()
                 }
             }
         })
