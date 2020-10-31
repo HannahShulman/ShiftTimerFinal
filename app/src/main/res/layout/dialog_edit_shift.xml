@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/save"
-            android:textColor="@color/primary_light_blue"
+            android:textColor="@color/cayanSelection"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/cancel"
-            android:textColor="@color/primary_light_blue"
+            android:textColor="@color/cayanSelection"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +71,7 @@
                 app:picker_cyclic="true"
                 app:picker_itemSpacing="6dp"
                 app:picker_mustBeOnFuture="false"
-                app:picker_selectedTextColor="@color/white"
+                app:picker_selectedTextColor="@android:color/white"
                 app:picker_selectorColor="@android:color/transparent"
                 app:picker_stepSizeHours="1"
                 app:picker_stepSizeMinutes="1"
@@ -112,7 +112,7 @@
                 app:picker_cyclic="true"
                 app:picker_itemSpacing="6dp"
                 app:picker_mustBeOnFuture="false"
-                app:picker_selectedTextColor="@color/white"
+                app:picker_selectedTextColor="@android:color/white"
                 app:picker_selectorColor="@android:color/transparent"
                 app:picker_stepSizeHours="1"
                 app:picker_stepSizeMinutes="1"
@@ -137,7 +137,7 @@
         android:id="@+id/rate_expansion_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_light_blue"
+        android:background="@color/cayanSelection"
         app:expansion_expanded="false">
 
         <LinearLayout
@@ -156,7 +156,7 @@
                 segmentedgroup:sc_border_width="2dp"
                 segmentedgroup:sc_checked_text_color="@color/primary_gray"
                 segmentedgroup:sc_corner_radius="10dp"
-                segmentedgroup:sc_tint_color="@color/white">
+                segmentedgroup:sc_tint_color="@android:color/white">
 
                 <RadioButton
                     android:id="@+id/percent_200"
@@ -206,7 +206,7 @@
         android:id="@+id/bonus_expansion_layout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/primary_light_blue"
+        android:background="@color/cayanSelection"
         app:expansion_expanded="false">
 
         <LinearLayout

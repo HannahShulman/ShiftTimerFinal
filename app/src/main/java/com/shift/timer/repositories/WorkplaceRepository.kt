@@ -3,8 +3,9 @@ package com.shift.timer.repositories
 import com.shift.timer.SpContract
 import com.shift.timer.dao.*
 import com.shift.timer.model.Workplace
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 class WorkplaceRepository @Inject constructor(
@@ -25,7 +26,11 @@ class WorkplaceRepository @Inject constructor(
         return workplaceDao.getWorkplaceById(spContract.workplaceId)
     }
 
-    suspend fun addWorkplace(): Flow<Long> {
-        return MutableStateFlow(workplaceDao.insertWorkplace(Workplace()))
-    }
+    suspend fun addWorkplace(): Long =
+        coroutineScope {
+            val d = async {
+                workplaceDao.insertWorkplace(Workplace())
+            }
+            d.await()
+        }
 }

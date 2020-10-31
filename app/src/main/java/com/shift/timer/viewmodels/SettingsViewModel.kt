@@ -26,10 +26,7 @@ class SettingsViewModel
 
     init {
        viewModelScope.launch {
-            workplaceRepository.addWorkplace().collect {
-                //save all settings with workplace id
-
-            }
+           val id =  workplaceRepository.addWorkplace()
         }
     }
 

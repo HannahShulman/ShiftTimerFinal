@@ -23,10 +23,8 @@ class MainActivity : AppCompatActivity() {
     @InternalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             val fragmentTransaction = supportFragmentManager.beginTransaction()
@@ -66,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.fragments.firstOrNull { it is Dismissible }?.let {
             (it as Dismissible).dismiss(object : OnDismissedListener {
                 override fun onDismissed() {
-                    it.parentFragmentManager.beginTransaction().remove(it).commitAllowingStateLoss();
+                    it.parentFragmentManager.beginTransaction().remove(it).commitAllowingStateLoss()
                 }
             })
         } ?: kotlin.run {

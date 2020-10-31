@@ -13,7 +13,7 @@
         android:textSize="22sp"
         android:layout_margin="16dp"
         tools:text ="22:53"
-        android:textColor="@color/primary_light_blue"
+        android:textColor="@color/cayanSelection"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +42,7 @@
         android:textSize="22sp"
         android:text="@string/entry"
         app:layout_constraintVertical_chainStyle="packed"
-        android:textColor="@color/primary_light_blue"
+        android:textColor="@color/cayanSelection"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

@@ -28,9 +28,9 @@
     <string name="add_your_note">Add your note</string>
     <string name="hourly_payment">שכר שעתי</string>
     <string name="additional_hours">שעות נוספות</string>
-    <string name="travel_expense">החזר נסיעות</string>
+    <string name="travel_expense">נסיעות</string>
     <string name="breaks">הפסקות</string>
-    <string name="calculation_period">תקופת חישוב</string>
+    <string name="calculation_period">תחילת חישוב</string>
     <string name="rate_per_day">תעריף ליום</string>
     <string name="notify_arrival">בהגעה לעבודה</string>
     <string name="notify_exit">בעזיבת העבודה</string>
@@ -55,6 +55,8 @@
     <string name="remind_me_time_after_shift_begins">לאחר %d שעות לאחר תחילת המשמרת</string>
     <string name="active">פעיל</string>
     <string name="not_active">לא פעיל</string>
+    <string name="saturday_rate">תעריף שבת</string>
+    <string name="sick_days">ימי מחלה</string>
 
     <string-array name="additional_hours_options">
         <item>לא לחשב</item>

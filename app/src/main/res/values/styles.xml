@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/darkBlue</item>
+        <item name="colorPrimaryDark">@color/darkBlue</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
     </style>
@@ -13,17 +13,17 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/darkBlue</item>
         <item name="android:statusBarColor">@color/darkBlue</item>
-        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorPrimaryDark">@android:color/white</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorSecondary">@android:color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
-        <item name="android:actionMenuTextColor">@color/white</item>
+        <item name="android:actionMenuTextColor">@android:color/white</item>
     </style>
 
     <style name="main_activity_style" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/darkestBlue</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -61,6 +61,14 @@
 
     <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/top_rounded_corners</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+<!--        <item name="android:textColorPrimary">TITLE_COLOR_GOES_HERE</item>-->
+<!--        <item name="android:textColorSecondary">SUBTITLE_COLOR_GOES_HERE</item>-->
     </style>
 
 </resources>

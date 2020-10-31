@@ -1,17 +1,19 @@
 package com.shift.timer.ui
 
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.shift.timer.R
 import com.shift.timer.Setting
-import com.shift.timer.SettingType
 import com.shift.timer.SettingsListAdapter
+import com.shift.timer.custom_ui.AppBarStateChangeListener
 import com.shift.timer.di.DaggerInjectHelper
+import com.shift.timer.throttledClickListener
 import com.shift.timer.viewmodels.SettingsViewModel
 import com.shift.timer.viewmodels.SettingsViewModelFactory
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -27,16 +29,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private val settingsViewModel: SettingsViewModel by viewModels { factory }
 
-    val adapter: SettingsListAdapter by lazy {
+    private val adapter: SettingsListAdapter by lazy {
         SettingsListAdapter(::onSettingSelected)
     }
 
-    private fun onSettingSelected(setting: Setting, notify: Boolean = false) {
-        when(setting.type){
-            SettingType.REGULAR -> SettingDetailActivity.start(requireContext(), setting)
-            SettingType.NOTIFICATION -> saveNotifySetting(setting, notify)
-            SettingType.HEADER -> Throwable("The headers shouldn't be clickable")
-        }
+    private fun onSettingSelected(setting: Setting, view: View) {
+        SettingDetailActivity.start(requireContext(), setting, view)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +45,16 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         settings_list.adapter = adapter
-        settingSavedCallback()
+
+        app_bar_layout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
+            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
+                more_workplace_opt.isVisible = state != State.COLLAPSED
+            }
+        })
+        workplace_title.throttledClickListener {
+            BottomSheetDialogFragment().show(parentFragmentManager, "")
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             settingsViewModel.getWorkplaceById().collect {
                 workplace_title.text = it.description
@@ -96,27 +103,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             settingsViewModel.shouldNotifyAfterShift().collect {
                 adapter.activeRemindAfterShift = it
             }
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.save_setting -> {
-                Toast.makeText(requireContext(), "ABC", Toast.LENGTH_SHORT).show()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    fun settingSavedCallback() { }
-
-    fun saveNotifySetting(setting: Setting, notify: Boolean) {
-        when(setting){
-            Setting.NOTIFY_ARRIVAL -> settingsViewModel.notifyOnArrival(notify)
-            Setting.NOTIFY_LEAVING -> settingsViewModel.notifyOnLeave(notify)
-            Setting.NOTIFY_END_OF_SHIFT -> onSettingSelected(setting, notify)
-            else-> Throwable("Should not be reaching here")
         }
     }
 }
