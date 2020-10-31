@@ -33,6 +33,4 @@ class WorkplaceRepository @Inject constructor(
             }
             d.await()
         }
-//        return MutableStateFlow(workplaceDao.insertWorkplace(Workplace()))
-
 }

@@ -35,7 +35,6 @@ class SettingDetailActivity : AppCompatActivity() {
             Setting.BREAKS -> BreaksSettingFragment()
             Setting.MONTH_DATE_CALCULATIONS -> MonthlyCalculationCycleFragment()
             Setting.RATE_PER_DAY -> RatePerDaySettingFragment()
-//            Setting.NOTIFY_END_OF_SHIFT -> NotifyEndOfShiftSettingFragment()
             Setting.SICK_DAYS -> BreaksSettingFragment().also {
                 Throwable("Implement Sick days fragment")
             }
