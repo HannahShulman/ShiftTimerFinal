@@ -68,8 +68,8 @@ class SettingDetailActivity : AppCompatActivity() {
         fun start(context: Context, setting: Setting, view: View) {
             val intent = Intent(context, SettingDetailActivity::class.java)
             intent.putExtra(SETTING_NAME, setting.name)
-            val pair2 = Pair<View, String>(view, "imageTransition")
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as AppCompatActivity, pair2)
+            val pair = Pair<View, String>(view, "imageTransition")
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as AppCompatActivity, pair)
             context.startActivity(intent, options.toBundle())
             (context as? AppCompatActivity)?.overridePendingTransition(
                 R.anim.enter_from_bottom,

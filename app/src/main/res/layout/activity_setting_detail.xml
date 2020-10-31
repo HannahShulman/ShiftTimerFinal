@@ -8,12 +8,6 @@
     android:orientation="vertical"
     tools:context=".ui.SettingDetailActivity">
 
-    <!--    <androidx.appcompat.widget.Toolbar-->
-    <!--        android:id="@+id/toolbar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="56dp"-->
-    <!--        app:titleTextColor="@color/white"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"/>-->
     <Button
         android:layout_margin="16dp"
         android:transitionName="imageTransition"
