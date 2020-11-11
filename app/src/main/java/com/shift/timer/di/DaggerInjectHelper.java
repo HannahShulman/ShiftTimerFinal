@@ -13,6 +13,7 @@ import com.shift.timer.ui.settingfragments.MonthlyCalculationCycleFragment;
 import com.shift.timer.ui.settingfragments.NotifyEndOfShiftSettingFragment;
 import com.shift.timer.ui.settingfragments.RatePerDaySettingFragment;
 import com.shift.timer.ui.settingfragments.TravelExpensesSettingFragment;
+import com.shift.timer.ui.workplace.NoAdditionalWorkplacesDialog;
 
 public class DaggerInjectHelper {
 
@@ -77,6 +78,12 @@ public class DaggerInjectHelper {
                 .inject(fragment);
     }
     public static void inject(NotifyEndOfShiftSettingFragment fragment) {
+        DaggerOrderGuideComponent.builder()
+                .netComponent(((MainApplication) fragment.getContext().getApplicationContext()).getNetComponent())
+                .build()
+                .inject(fragment);
+    }
+    public static void inject(NoAdditionalWorkplacesDialog fragment) {
         DaggerOrderGuideComponent.builder()
                 .netComponent(((MainApplication) fragment.getContext().getApplicationContext()).getNetComponent())
                 .build()

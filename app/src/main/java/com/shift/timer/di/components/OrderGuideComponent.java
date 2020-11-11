@@ -14,6 +14,7 @@ import com.shift.timer.ui.settingfragments.MonthlyCalculationCycleFragment;
 import com.shift.timer.ui.settingfragments.NotifyEndOfShiftSettingFragment;
 import com.shift.timer.ui.settingfragments.RatePerDaySettingFragment;
 import com.shift.timer.ui.settingfragments.TravelExpensesSettingFragment;
+import com.shift.timer.ui.workplace.NoAdditionalWorkplacesDialog;
 
 import dagger.Component;
 
@@ -35,4 +36,5 @@ public abstract class OrderGuideComponent {
     public abstract void inject(MonthlyCalculationCycleFragment fragment);
     public abstract void inject(RatePerDaySettingFragment fragment);
     public abstract void inject(NotifyEndOfShiftSettingFragment fragment);
+    public abstract void inject(NoAdditionalWorkplacesDialog dialog);
 }

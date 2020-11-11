@@ -7,6 +7,11 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@android:color/white"/>
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"

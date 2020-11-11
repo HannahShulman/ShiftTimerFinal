@@ -18,6 +18,8 @@ class ShiftRepository @Inject constructor(
 ) {
 
     suspend fun startShift() {
+
+
         GlobalScope.launch {
             val wage = wageSettingDao.getWorkplaceById(spContract.workplaceId)
             val paymentForHourShift = wage.wage//per hour cents

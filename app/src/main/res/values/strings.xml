@@ -57,6 +57,7 @@
     <string name="not_active">לא פעיל</string>
     <string name="saturday_rate">תעריף שבת</string>
     <string name="sick_days">ימי מחלה</string>
+    <string name="no_additional_workplaces">אין לך מקומות עבודה נוספים</string>
 
     <string-array name="additional_hours_options">
         <item>לא לחשב</item>

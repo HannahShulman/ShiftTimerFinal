@@ -7,13 +7,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.shift.timer.R
 import com.shift.timer.Setting
 import com.shift.timer.SettingsListAdapter
 import com.shift.timer.custom_ui.AppBarStateChangeListener
 import com.shift.timer.di.DaggerInjectHelper
 import com.shift.timer.throttledClickListener
+import com.shift.timer.ui.workplace.NoAdditionalWorkplacesDialog
 import com.shift.timer.viewmodels.SettingsViewModel
 import com.shift.timer.viewmodels.SettingsViewModelFactory
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -52,7 +52,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             }
         })
         workplace_title.throttledClickListener {
-            BottomSheetDialogFragment().show(parentFragmentManager, "")
+            val d = NoAdditionalWorkplacesDialog()
+            d.show(parentFragmentManager, "")
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
