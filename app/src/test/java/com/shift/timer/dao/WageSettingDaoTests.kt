@@ -34,6 +34,7 @@ class WageSettingDaoTests {
     val currentWorkplace = CurrentWorkplace(-1)
     val wageSetting = WageSetting(workplaceId = -1, wage = 200)
     val secondWageSetting = WageSetting(workplaceId = 1, wage = 300)
+    //tryout
 
 
     @Before
