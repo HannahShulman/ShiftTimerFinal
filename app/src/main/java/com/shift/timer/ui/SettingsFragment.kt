@@ -1,7 +1,10 @@
 package com.shift.timer.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -49,16 +52,22 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         app_bar_layout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
             override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {
                 more_workplace_opt.isVisible = state != State.COLLAPSED
+
             }
         })
-        workplace_title.throttledClickListener {
+
+        collapsing_toolbar.throttledClickListener {
             val d = NoAdditionalWorkplacesDialog()
             d.show(parentFragmentManager, "")
         }
 
+        more_workplace_opt.setOnClickListener {
+            //added this listener only so this button wouldn't trigger the method on line 59 - Dan
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             settingsViewModel.getWorkplaceById().collect {
-                workplace_title.text = it.description
+                collapsing_toolbar.title = it.description
             }
         }
         viewLifecycleOwner.lifecycleScope.launch {
