@@ -1,6 +1,5 @@
 package com.shift.timer.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +12,6 @@ import com.shift.timer.repositories.SettingsRepository
 import com.shift.timer.repositories.ShiftRepository
 import com.shift.timer.repositories.WorkplaceRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,8 +23,8 @@ class SettingsViewModel
 ) : ViewModel() {
 
     init {
-       viewModelScope.launch {
-           val id =  workplaceRepository.addWorkplace()
+        viewModelScope.launch {
+            val id = workplaceRepository.addWorkplace()
         }
     }
 

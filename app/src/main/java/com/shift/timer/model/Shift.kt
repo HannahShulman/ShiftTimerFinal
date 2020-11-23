@@ -8,7 +8,6 @@ import com.shift.timer.viewmodels.EditShiftData
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-
 @Entity
 @TypeConverters(Converters::class)
 data class Shift(
@@ -26,10 +25,10 @@ data class Shift(
     var bonus: Int = 0
 
     val getPaymentDisplay: String
-    get() {
-       val payInCents =  (payment.div(60.00).toLong()).times(totalTimeInMinutes())
-        return String.format(Locale.getDefault(), "%.2f", payInCents.div(100.0).toFloat())
-    }
+        get() {
+            val payInCents = (payment.div(60.00).toLong()).times(totalTimeInMinutes())
+            return String.format(Locale.getDefault(), "%.2f", payInCents.div(100.0).toFloat())
+        }
 
     val minutesInShift: Long
         get() = end?.time?.minus(start.time)?.div(1000) ?: 0
@@ -52,7 +51,10 @@ fun Shift.totalTimeInMinutes(): Long {
 }
 
 @Entity
-data class Workplace(@PrimaryKey(autoGenerate = true) val workplaceId: Int = 0, val description: String ="")
+data class Workplace(
+    @PrimaryKey(autoGenerate = true) val workplaceId: Int = 0,
+    val description: String = ""
+)
 
 data class WorkplaceWithSettings(val workplaceId: Int, val settings: List<Setting>)
 

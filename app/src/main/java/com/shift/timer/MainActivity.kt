@@ -67,9 +67,7 @@ class MainActivity : AppCompatActivity() {
                     it.parentFragmentManager.beginTransaction().remove(it).commitAllowingStateLoss()
                 }
             })
-        } ?: kotlin.run {
-            super.onBackPressed()
-        }
+        } ?: super.onBackPressed()
     }
 
     private fun MenuItem.fragmentTagById(): String = when (itemId) {

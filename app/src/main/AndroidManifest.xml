@@ -15,7 +15,7 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/main_activity_style"
+            android:theme="@style/Theme.Design.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

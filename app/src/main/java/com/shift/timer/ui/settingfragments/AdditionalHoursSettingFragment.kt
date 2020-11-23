@@ -58,11 +58,8 @@ class AdditionalHoursSettingFragment :
     }
 
     override fun saveSetting() {
-        val minutes = if (selectedPosition != 0) {
-            ((selectedPosition - 1) * 30) + 7 * 60
-        } else {
-            0
-        }
+        val minutes =
+            (((selectedPosition - 1) * 30) + 7 * 60).takeIf { selectedPosition != 0 } ?: 0
         settingsViewModel.setMinutesPaidRegularRate(minutes)
     }
 }
