@@ -4,11 +4,12 @@ import android.app.Application;
 
 import androidx.annotation.Nullable;
 
-import com.facebook.stetho.Stetho;
 import com.shift.timer.di.components.DaggerNetComponent;
 import com.shift.timer.di.components.NetComponent;
 import com.shift.timer.di.modules.AppModule;
 import com.shift.timer.di.modules.NetModule;
+
+import java.util.Arrays;
 
 
 public class MainApplication extends Application {
@@ -28,7 +29,6 @@ public class MainApplication extends Application {
         instance = this;
         super.onCreate();
 
-        Stetho.initializeWithDefaults(this);
         initComponents();
     }
 
@@ -42,4 +42,5 @@ public class MainApplication extends Application {
                 .netModule(new NetModule("abcd"))
                 .build();
     }
+
 }

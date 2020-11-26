@@ -1,6 +1,6 @@
 package com.shift.timer.di;
 
-import com.shift.timer.ui.CurrentShiftViewModel;
+import com.shift.timer.viewmodels.CurrentShiftViewModel;
 
 import dagger.Module;
 import dagger.Provides;

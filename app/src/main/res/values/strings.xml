@@ -3,11 +3,122 @@
     <string name="item">Item</string>
     <string name="not_in_shift">לא במשמרת</string>
     <string name="slick_long_for_enter">לחיצה ארוכה לכניסה</string>
-    <string name="time_format">%1s:%2s:%3s</string>
+    <string name="time_format">%s:%s:%s</string>
     <string name="entry_time">שעת כניסה: %1s</string>
     <string name="suggest_improvements">הצעות לשיפורים</string>
     <string name="share_this_app">שתפו את אחראי משמרת</string>
     <string name="like_us_share_us">אוהבים אותנו? תראו את זה!</string>
     <string name="remove_ads">הסרת פרסומות</string>
     <string name="purchase_recovery">שחזור רכישה</string>
+    <string name="workplace_settings">הגדרות עבודה</string>
+    <string name="current_shift">משמרת נוכחית</string>
+    <string name="shifts">משמרות</string>
+    <string name="entry">כניסה</string>
+    <string name="exit">יציאה</string>
+    <string name="rate">תעריף</string>
+    <string name="total_payment">%s ₪</string>
+    <string name="payment_cycle">%d עד %d לחודש הבא </string>
+    <string name="total_time">%s דקות</string>
+    <string name="rate_percent">%d\%%</string>
+    <string name="edit">ערוך</string>
+    <string name="total_time_desc_text">סה\"כ</string>
+    <string name="save">שמור</string>
+    <string name="cancel">ביטול</string>
+    <string name="bonus">בונוס</string>
+    <string name="add_your_note">Add your note</string>
+    <string name="hourly_payment">שכר שעתי</string>
+    <string name="additional_hours">שעות נוספות</string>
+    <string name="travel_expense">נסיעות</string>
+    <string name="breaks">הפסקות</string>
+    <string name="calculation_period">תחילת חישוב</string>
+    <string name="rate_per_day">תעריף ליום</string>
+    <string name="notify_arrival">בהגעה לעבודה</string>
+    <string name="notify_exit">בעזיבת העבודה</string>
+    <string name="notify_end_of_shift">בסיום משמרת</string>
+    <string name="calculate">חשב</string>
+    <string name="dont_calculate">לא לחשב</string>
+    <string name="salary">שכר</string>
+    <string name="reminders">תזכורות</string>
+    <string name="calculate_after">חשב שעות נוספות לאחר %s שעות</string>
+    <string name="calculate_break_after">הורד %s דקות מכל משמרת</string>
+    <string name="additional_hours_exp">שעתיים ראשונות לפי 125%, שעה שלישית ומעלה 150%</string>
+    <string name="_200">200</string>
+    <string name="_150">150</string>
+    <string name="shekel_per_month">ש"ח לחודש</string>
+    <string name="per_shift">למשמרת</string>
+    <string name="per_month">לחודש</string>
+    <string name="breaks_calculation_exp">זמן הפסקה לא יופחת ממשמרת של פחות מ-6 שעות</string>
+    <string name="calculate_full_month">מתחילת יד סוף החודש</string>
+    <string name="calculate_cycle_from_to" >המשכורת תחושב מה %d עד %d לחודש הבא</string>
+    <string name="remind_me_to_leave">"הזכר לי לצאת ממשמרת  "</string>
+    <string name="remind_me_time_after_shift_begins_with_minutes">לאחר %d שעות ו%d דקות לאחר תחילת המשמרת</string>
+    <string name="remind_me_time_after_shift_begins">לאחר %d שעות לאחר תחילת המשמרת</string>
+    <string name="active">פעיל</string>
+    <string name="not_active">לא פעיל</string>
+    <string name="saturday_rate">תעריף שבת</string>
+    <string name="sick_days">ימי מחלה</string>
+    <string name="no_additional_workplaces">אין לך מקומות עבודה נוספים</string>
+
+    <string-array name="additional_hours_options">
+        <item>לא לחשב</item>
+        <item>7 שעות</item>
+        <item>7.5 שעות</item>
+        <item>8 שעות</item>
+        <item>8.5 שעות</item>
+        <item>9 שעות</item>
+    </string-array>
+
+    <string-array name="break_calculations_options">
+        <item>לא לחשב</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+        <item>60</item>
+        <item>65</item>
+        <item>70</item>
+        <item>75</item>
+        <item>80</item>
+        <item>85</item>
+        <item>90</item>
+    </string-array>
+    <string-array name="monthly_cycle_calculations_ranges">
+        <item>חודש מלא</item>
+        <item>2 עד 1 לחודש הבא</item>
+        <item>3 עד 2 לחודש הבא</item>
+        <item>4 עד 3 לחודש הבא</item>
+        <item>5 עד 4 לחודש הבא</item>
+        <item>6 עד 5 לחודש הבא</item>
+        <item>7 עד 6 לחודש הבא</item>
+        <item>8 עד 7 לחודש הבא</item>
+        <item>9 עד 8 לחודש הבא</item>
+        <item>10 עד 9 לחודש הבא</item>
+        <item>11 עד 10 לחודש הבא</item>
+        <item>12 עד 11 לחודש הבא</item>
+        <item>13 עד 12 לחודש הבא</item>
+        <item>14 עד 13 לחודש הבא</item>
+        <item>15 עד 14 לחודש הבא</item>
+        <item>16 עד 15 לחודש הבא</item>
+        <item>17 עד 16 לחודש הבא</item>
+        <item>18 עד 17 לחודש הבא</item>
+        <item>19 עד 18 לחודש הבא</item>
+        <item>20 עד 19 לחודש הבא</item>
+        <item>21 עד 20 לחודש הבא</item>
+        <item>22 עד 21 לחודש הבא</item>
+        <item>23 עד 22 לחודש הבא</item>
+        <item>24 עד 23 לחודש הבא</item>
+        <item>25 עד 24 לחודש הבא</item>
+        <item>26 עד 25 לחודש הבא</item>
+        <item>27 עד 26 לחודש הבא</item>
+        <item>28 עד 27 לחודש הבא</item>
+        <item>29 עד 28 לחודש הבא</item>
+        <item>30 עד 29 לחודש הבא</item>
+    </string-array>
 </resources>

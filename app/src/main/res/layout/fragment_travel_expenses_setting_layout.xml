@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:background="@color/darkBlue">
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/calculate_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:layout_marginBottom="48dp"
+        android:checked="false"
+        app:layout_constraintBottom_toTopOf="@id/payment"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:thumbTint="@color/cayanSelection" />
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/shekel_per_month"
+        android:textColor="@color/cayanSelection"
+        app:layout_constraintBottom_toBottomOf="@id/calculate_toggle"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/calculate_toggle"/>
+
+    <EditText
+        android:id="@+id/payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@null"
+        android:inputType="numberDecimal"
+        android:letterSpacing="0.05"
+        android:textColor="@color/cayanSelection"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/info_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="1234" />
+
+    <TextView
+        android:id="@+id/info_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/shekel_per_month"
+        android:textColor="@color/cayanSelection"
+        app:layout_constraintBottom_toTopOf="@+id/cycle_segments"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cycle_segments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:gravity="center"
+        android:layoutDirection="ltr"
+        android:orientation="horizontal"
+        segmentedgroup:layout_constraintBottom_toTopOf="@id/guideline"
+        segmentedgroup:layout_constraintEnd_toEndOf="parent"
+        segmentedgroup:layout_constraintStart_toStartOf="parent"
+        segmentedgroup:sc_border_width="2dp"
+        segmentedgroup:sc_checked_text_color="@color/primary_gray"
+        segmentedgroup:sc_corner_radius="10dp"
+        segmentedgroup:sc_tint_color="@android:color/white">
+        <RadioButton
+            android:id="@+id/per_month"
+            style="@style/RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/per_month" />
+
+        <RadioButton
+            android:id="@+id/per_shift"
+            style="@style/RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/per_shift" />
+
+    </info.hoang8f.android.segmented.SegmentedGroup>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

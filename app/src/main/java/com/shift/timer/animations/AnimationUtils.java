@@ -28,7 +28,7 @@ public class AnimationUtils {
                     int cy = revealSettings.centerY;
                     int width = revealSettings.width;
                     int height = revealSettings.height;
-                    int duration = context.getResources().getInteger(android.R.integer.config_mediumAnimTime);
+                    int duration = 2000;//context.getResources().getInteger(android.R.integer.config_mediumAnimTime);
 
                     //Simply use the diagonal of the view
                     float finalRadius = (float) Math.sqrt(width * width + height * height);
@@ -72,7 +72,7 @@ public class AnimationUtils {
 
             float initRadius = (float) Math.sqrt(width * width + height * height);
             Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, initRadius, 0);
-            anim.setDuration(getMediumDuration(context));
+            anim.setDuration(2000);//getMediumDuration(context));
             anim.setInterpolator(new FastOutSlowInInterpolator());
             anim.addListener(new AnimatorListenerAdapter() {
                 @Override

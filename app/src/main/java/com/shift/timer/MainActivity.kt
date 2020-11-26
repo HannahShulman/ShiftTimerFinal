@@ -1,15 +1,18 @@
 package com.shift.timer
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.shift.timer.animations.Dismissible
+import com.shift.timer.animations.Dismissible.OnDismissedListener
 import com.shift.timer.databinding.ActivityMainBinding
 import com.shift.timer.ui.CurrentShiftFragment
 import com.shift.timer.ui.SettingsFragment
 import com.shift.timer.ui.ShiftListFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
+
 
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
@@ -20,10 +23,8 @@ class MainActivity : AppCompatActivity() {
     @InternalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             val fragmentTransaction = supportFragmentManager.beginTransaction()
@@ -59,12 +60,24 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.selectedItemId = R.id.current_shift
     }
 
+    override fun onBackPressed() {
+        supportFragmentManager.fragments.firstOrNull { it is Dismissible }?.let {
+            (it as Dismissible).dismiss(object : OnDismissedListener {
+                override fun onDismissed() {
+                    it.parentFragmentManager.beginTransaction().remove(it).commitAllowingStateLoss()
+                }
+            })
+        } ?: super.onBackPressed()
+    }
+
     private fun MenuItem.fragmentTagById(): String = when (itemId) {
         R.id.current_shift -> "Current Shift"
+        R.id.settings -> "settings"
+        R.id.shifts -> "shifts"
         else -> ""
     }
 
-    private fun MenuItem.fragmentById(): Fragment? = when(itemId) {
+    private fun MenuItem.fragmentById(): Fragment? = when (itemId) {
         R.id.settings -> SettingsFragment()
         R.id.current_shift -> CurrentShiftFragment()
         R.id.shifts -> ShiftListFragment()

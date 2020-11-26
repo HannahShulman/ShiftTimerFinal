@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/black">
+
+        <TextView
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/save"
+            android:textColor="@color/cayanSelection"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cancel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/cancel"
+            android:textColor="@color/cayanSelection"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:background="@color/darkBlue"
+        app:expansion_headerIndicator="@color/darkBlue"
+        app:expansion_layout="@id/entry_expansion_layout"
+        app:expansion_toggleOnClick="true">
+
+        <include layout="@layout/entry_shit_edit_item_layout" />
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/entry_expansion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="@color/primary_blue"
+        app:expansion_expanded="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker
+                android:id="@+id/entry_time_picker"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                app:picker_curved="true"
+                app:picker_curvedMaxAngle="45"
+                app:picker_cyclic="true"
+                app:picker_itemSpacing="6dp"
+                app:picker_mustBeOnFuture="false"
+                app:picker_selectedTextColor="@android:color/white"
+                app:picker_selectorColor="@android:color/transparent"
+                app:picker_stepSizeHours="1"
+                app:picker_stepSizeMinutes="1"
+                app:picker_visibleItemCount="7" />
+
+        </LinearLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionLayout>
+
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        app:expansion_headerIndicator="@color/primary_blue"
+        app:expansion_layout="@id/exit_expansion_layout"
+        app:expansion_toggleOnClick="true">
+
+        <include layout="@layout/exit_shift_edit_item_layout" />
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/exit_expansion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_blue"
+        app:expansion_expanded="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker
+                android:id="@+id/exit_time_picker"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                app:picker_curved="true"
+                app:picker_curvedMaxAngle="45"
+                app:picker_cyclic="true"
+                app:picker_itemSpacing="6dp"
+                app:picker_mustBeOnFuture="false"
+                app:picker_selectedTextColor="@android:color/white"
+                app:picker_selectorColor="@android:color/transparent"
+                app:picker_stepSizeHours="1"
+                app:picker_stepSizeMinutes="1"
+                app:picker_visibleItemCount="7" />
+
+        </LinearLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionLayout>
+
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        app:expansion_headerIndicator="@color/primary_blue"
+        app:expansion_layout="@id/rate_expansion_layout"
+        app:expansion_toggleOnClick="true">
+
+        <include layout="@layout/rate_shift_edit_item_layout" />
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/rate_expansion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cayanSelection"
+        app:expansion_expanded="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="center_horizontal|bottom">
+
+            <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rate_segments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:gravity="center"
+                android:layoutDirection="ltr"
+                android:orientation="horizontal"
+                segmentedgroup:sc_border_width="2dp"
+                segmentedgroup:sc_checked_text_color="@color/primary_gray"
+                segmentedgroup:sc_corner_radius="10dp"
+                segmentedgroup:sc_tint_color="@android:color/white">
+
+                <RadioButton
+                    android:id="@+id/percent_200"
+                    style="@style/RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="200" />
+
+                <RadioButton
+                    android:id="@+id/percent_150"
+                    style="@style/RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="150" />
+
+                <RadioButton
+                    android:id="@+id/percent_125"
+                    style="@style/RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="125" />
+
+                <RadioButton
+                    android:id="@+id/percent_100"
+                    style="@style/RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100" />
+            </info.hoang8f.android.segmented.SegmentedGroup>
+
+        </LinearLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionLayout>
+
+    <com.github.florent37.expansionpanel.ExpansionHeader
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        app:expansion_headerIndicator="@color/primary_blue"
+        app:expansion_layout="@id/bonus_expansion_layout"
+        app:expansion_toggleOnClick="true">
+
+        <include layout="@layout/bonus_shift_edit_item_layout" />
+
+    </com.github.florent37.expansionpanel.ExpansionHeader>
+
+    <com.github.florent37.expansionpanel.ExpansionLayout
+        android:id="@+id/bonus_expansion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/cayanSelection"
+        app:expansion_expanded="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:layoutDirection="rtl"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/bonus_et"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:layout_margin="24dp"
+                android:inputType="numberDecimal"
+                android:background="@drawable/round_corners_edit_text"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₪"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:background="@color/transparent"/>
+        </LinearLayout>
+
+    </com.github.florent37.expansionpanel.ExpansionLayout>
+    <EditText
+        android:id="@+id/shift_note"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:layout_margin="16dp"
+        android:background="@drawable/round_corners_edit_text"
+        android:hint="@string/add_your_note"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/total_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="200.00" />
+</LinearLayout>

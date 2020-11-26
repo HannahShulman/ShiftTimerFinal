@@ -1,5 +1,7 @@
 package com.shift.timer
 
-fun Long.timeRemainingText(shiftLengthInSeconds: Long): String{
-    return "Display remaining text"
-}
+import java.text.SimpleDateFormat
+import java.util.*
+
+fun Date.dateToTimeFormat(): String =
+    SimpleDateFormat("HH:mm", Locale.getDefault()).format(this.time)
