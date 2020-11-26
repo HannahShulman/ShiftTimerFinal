@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.dropbox.mobile.store:store4:4.0.0-alpha06">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.dropbox.mobile.store/store4/4.0.0-alpha06/e92277e1390b0c50ff16af951d5efc79f5425c0e/store4-4.0.0-alpha06.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.dropbox.mobile.store/store4/4.0.0-alpha06/fc284a72ed528626c6b7b8e20fdea64ba7992c4/store4-4.0.0-alpha06-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.dropbox.mobile.store/store4/4.0.0-alpha06/a5e8d10a32f0d99864b9a8c7135cfa91b1f5572f/store4-4.0.0-alpha06-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

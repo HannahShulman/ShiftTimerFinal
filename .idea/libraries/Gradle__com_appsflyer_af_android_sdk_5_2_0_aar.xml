@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Gradle: com.appsflyer:af-android-sdk:5.2.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ad3bf21c080ea66dc0063663158153d8/jetified-af-android-sdk-5.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ad3bf21c080ea66dc0063663158153d8/jetified-af-android-sdk-5.2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d0564a86ba3cd0b46d602e4adbd21d70/jetified-af-android-sdk-5.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d0564a86ba3cd0b46d602e4adbd21d70/jetified-af-android-sdk-5.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d0564a86ba3cd0b46d602e4adbd21d70/jetified-af-android-sdk-5.2.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6148d599805c074eab4dcf0a2b2d6708/jetified-af-android-sdk-5.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6148d599805c074eab4dcf0a2b2d6708/jetified-af-android-sdk-5.2.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6148d599805c074eab4dcf0a2b2d6708/jetified-af-android-sdk-5.2.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.appsflyer/af-android-sdk/5.2.0/de3634733ed54542fed51c22ad62ef94f81468b7/af-android-sdk-5.2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

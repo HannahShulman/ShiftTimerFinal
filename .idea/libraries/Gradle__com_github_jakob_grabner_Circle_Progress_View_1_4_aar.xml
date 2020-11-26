@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.jakob-grabner:Circle-Progress-View:1.4@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/36e2b64b0c2fb53f6023b2ed4340ad78/jetified-Circle-Progress-View-1.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/36e2b64b0c2fb53f6023b2ed4340ad78/jetified-Circle-Progress-View-1.4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bce9e0c6aa6d51887fdbc510036356d0/jetified-Circle-Progress-View-1.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bce9e0c6aa6d51887fdbc510036356d0/jetified-Circle-Progress-View-1.4/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bce9e0c6aa6d51887fdbc510036356d0/jetified-Circle-Progress-View-1.4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/effe1ef333d318e03e284b17759683d6/jetified-Circle-Progress-View-1.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/effe1ef333d318e03e284b17759683d6/jetified-Circle-Progress-View-1.4/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/effe1ef333d318e03e284b17759683d6/jetified-Circle-Progress-View-1.4/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jakob-grabner/Circle-Progress-View/1.4/5e36e18aa359ad78832f1d279439e6a8256e6e93/Circle-Progress-View-1.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jakob-grabner/Circle-Progress-View/1.4/687667ef2f8d926a62a03760afd4147d587a4b26/Circle-Progress-View-1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

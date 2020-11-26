@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.dynamicanimation:dynamicanimation-ktx:1.0.0-alpha03@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ac2acaaf3b08db8be413c9bfdf4692c1/jetified-dynamicanimation-ktx-1.0.0-alpha03/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ac2acaaf3b08db8be413c9bfdf4692c1/jetified-dynamicanimation-ktx-1.0.0-alpha03/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ac2acaaf3b08db8be413c9bfdf4692c1/jetified-dynamicanimation-ktx-1.0.0-alpha03/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.dynamicanimation/dynamicanimation-ktx/1.0.0-alpha03/844edc443d207e9c2bf58eddbae80f6d7bc940cd/dynamicanimation-ktx-1.0.0-alpha03-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="Gradle: io.branch.sdk.android:library:2.19.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b7b5a797543234fd43584cc9bf3dde7a/jetified-library-2.19.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b7b5a797543234fd43584cc9bf3dde7a/jetified-library-2.19.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7e3a4645074397a56684c65a1f20ae2b/jetified-library-2.19.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7e3a4645074397a56684c65a1f20ae2b/jetified-library-2.19.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7e3a4645074397a56684c65a1f20ae2b/jetified-library-2.19.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/99a64f9714134207f63f5da3f0efd869/jetified-library-2.19.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/99a64f9714134207f63f5da3f0efd869/jetified-library-2.19.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/99a64f9714134207f63f5da3f0efd869/jetified-library-2.19.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.branch.sdk.android/library/2.19.0/c0bb86928ad7a3ceb5c0732fc229fe06ccb11974/library-2.19.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.branch.sdk.android/library/2.19.0/863f241a968b36a2467ec42b6afac0dc653a6871/library-2.19.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mikepenz:actionitembadge:3.3.2@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2ee09fd9e5bfa4ae391165b01bc8d40e/jetified-actionitembadge-3.3.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2ee09fd9e5bfa4ae391165b01bc8d40e/jetified-actionitembadge-3.3.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/67b64094667273caa2ee1a0a1b5b21b3/jetified-actionitembadge-3.3.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/67b64094667273caa2ee1a0a1b5b21b3/jetified-actionitembadge-3.3.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/67b64094667273caa2ee1a0a1b5b21b3/jetified-actionitembadge-3.3.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/45f438c27a33a575c4352db4631a957c/jetified-actionitembadge-3.3.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/45f438c27a33a575c4352db4631a957c/jetified-actionitembadge-3.3.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/45f438c27a33a575c4352db4631a957c/jetified-actionitembadge-3.3.2/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz/actionitembadge/3.3.2/8b226065efcff320758701bfa2e81d00c5598fda/actionitembadge-3.3.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz/actionitembadge/3.3.2/ce65f3645a5e402a27b5d9976c8ae0093ce04088/actionitembadge-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

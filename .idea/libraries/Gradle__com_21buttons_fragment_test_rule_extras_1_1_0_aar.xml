@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="Gradle: com.21buttons:fragment-test-rule-extras:1.1.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/20221a366a4cd53cba7310c30794b5ef/jetified-fragment-test-rule-extras-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/20221a366a4cd53cba7310c30794b5ef/jetified-fragment-test-rule-extras-1.1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dccf3160978c1051f7f4a00ea3d8b226/jetified-fragment-test-rule-extras-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dccf3160978c1051f7f4a00ea3d8b226/jetified-fragment-test-rule-extras-1.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dccf3160978c1051f7f4a00ea3d8b226/jetified-fragment-test-rule-extras-1.1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76e1655f018d2199feca9c237128500c/jetified-fragment-test-rule-extras-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76e1655f018d2199feca9c237128500c/jetified-fragment-test-rule-extras-1.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76e1655f018d2199feca9c237128500c/jetified-fragment-test-rule-extras-1.1.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.21buttons/fragment-test-rule-extras/1.1.0/595836e822b875870b760852bcfe03a354a24cc8/fragment-test-rule-extras-1.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.21buttons/fragment-test-rule-extras/1.1.0/595836e822b875870b760852bcfe03a354a24cc8/fragment-test-rule-extras-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

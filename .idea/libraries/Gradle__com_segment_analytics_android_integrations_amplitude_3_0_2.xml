@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.segment.analytics.android.integrations:amplitude:3.0.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.segment.analytics.android.integrations/amplitude/3.0.2/37cfe37584974952b5965f4c022c09aebab9a82e/amplitude-3.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.segment.analytics.android.integrations/amplitude/3.0.2/c3609c147cadbfec0eda2413644270ad58c400f5/amplitude-3.0.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.segment.analytics.android.integrations/amplitude/3.0.2/5bdd4c08b58ea01dcfa65adb6cfdee64df588424/amplitude-3.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

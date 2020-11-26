@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.ome450901:SimpleRatingBar:1.4.3@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d881ece5acff768900aca5dcf5df07b4/jetified-SimpleRatingBar-1.4.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d881ece5acff768900aca5dcf5df07b4/jetified-SimpleRatingBar-1.4.3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5d4480c4c797552045e1bfa26ee1d9a1/jetified-SimpleRatingBar-1.4.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5d4480c4c797552045e1bfa26ee1d9a1/jetified-SimpleRatingBar-1.4.3/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5d4480c4c797552045e1bfa26ee1d9a1/jetified-SimpleRatingBar-1.4.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/332fbcd635125328fc2aa70d51849327/jetified-SimpleRatingBar-1.4.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/332fbcd635125328fc2aa70d51849327/jetified-SimpleRatingBar-1.4.3/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/332fbcd635125328fc2aa70d51849327/jetified-SimpleRatingBar-1.4.3/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ome450901/SimpleRatingBar/1.4.3/8dbd7b0596d85e8c0fe5061b7c24d97bc35c3853/SimpleRatingBar-1.4.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
