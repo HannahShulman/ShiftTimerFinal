@@ -9,6 +9,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/99a64f9714134207f63f5da3f0efd869/jetified-library-2.19.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/99a64f9714134207f63f5da3f0efd869/jetified-library-2.19.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/99a64f9714134207f63f5da3f0efd869/jetified-library-2.19.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e06e26b8e187ef75762e5f011a30092b/jetified-library-2.19.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e06e26b8e187ef75762e5f011a30092b/jetified-library-2.19.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e06e26b8e187ef75762e5f011a30092b/jetified-library-2.19.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.branch.sdk.android/library/2.19.0/c0bb86928ad7a3ceb5c0732fc229fe06ccb11974/library-2.19.0-javadoc.jar!/" />

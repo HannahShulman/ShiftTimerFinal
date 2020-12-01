@@ -2,11 +2,13 @@ package com.shift.timer.ui.settingfragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.shift.timer.R
+import com.shift.timer.ui.SettingDetailActivity
 import com.shift.timer.ui.SettingSaveable
 import com.shift.timer.viewmodels.SettingsViewModel
 import com.shift.timer.viewmodels.SettingsViewModelFactory
@@ -28,12 +30,15 @@ abstract class SettingBaseFragment(layout: Int) : Fragment(layout),
     override fun settingSavedCallback() {
         settingsViewModel.settingSaved.observe(viewLifecycleOwner, Observer {
             if (it) {
-                view?.let { v ->
-                    Snackbar.make(v, "השינויים נשמרו בהצלחה", Snackbar.LENGTH_SHORT)
-                        .setBackgroundTint(resources.getColor(R.color.cayanSelection)).show()
+                view?.let {
+                    Toast.makeText(context, "השינויים נשמרו בהצלחה", Toast.LENGTH_SHORT).show()
+                    (context as? SettingDetailActivity)?.finish()
                 }
             }
         })
     }
 
+    fun saveChangesAndCloseActivity() {
+        (context as? SettingDetailActivity)?.onBackPressed()
+    }
 }

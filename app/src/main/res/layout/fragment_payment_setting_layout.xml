@@ -2,123 +2,141 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/darkestBlue">
 
-    <androidx.cardview.widget.CardView
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/title_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toTopOf="parent"
         android:transitionName="imageTransition"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="20dp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/setting_background"
+            android:padding="16dp"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/close_fragment"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/light_faded_circle"
+                android:padding="4dp"
+                android:src="@drawable/ic_close"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/dark_blue_circle"
+                android:padding="16dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_salary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/setting_background"
-                app:layout_constraintTop_toTopOf="parent"
-                android:padding="16dp">
-                <ImageView
-                    android:id="@+id/icon"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginBottom="4dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:background="@drawable/dark_blue_circle"
-                    android:padding="16dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/ic_salary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/rubik_light"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/icon"
+                app:tint="@color/cayanSelection"
+                tools:text="value" />
 
+            <!-- I've commented this out because it doesn't seem to serve any
+                purpose and I didn't know if it was important to something -->
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/rubik_light"
-                    android:src="@drawable/ic_arrow_back_black_24dp"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/icon"
-                    app:tint="@color/cayanSelection"
-                    tools:text="value" />
-
-                <TextView
-                    android:id="@+id/value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:textColor="@color/timer_text_purple"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="value" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--            <TextView-->
+            <!--                android:id="@+id/value"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="8dp"-->
+            <!--                android:layout_marginBottom="8dp"-->
+            <!--                android:textColor="@color/timer_text_purple"-->
+            <!--                android:textSize="12sp"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                tools:text="value" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <View
+    <androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/cayanSelection"
-        app:layout_constraintBottom_toTopOf="@id/guideline"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <requestFocus />
-    </View>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/darkBlue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline" />
-
-    <EditText
-        android:id="@+id/payment"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@null"
-        android:text="1234"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="שח לשעה"
-        android:textColor="@color/primary_gray"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:cardCornerRadius="20dp"
+        app:layout_constraintTop_toBottomOf="@id/title_card_view">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/setting_background"
+            android:padding="24dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@null"
+                android:inputType="numberDecimal"
+                android:text="1234"
+                android:textColor="@color/mainCayan"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:id="@+id/separator"
+                android:layout_width="200dp"
+                android:layout_height="2dp"
+                android:background="@color/mainCayan"
+                app:layout_constraintTop_toBottomOf="@id/payment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="2dp"/>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@string/shekel_per_month"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separator" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
