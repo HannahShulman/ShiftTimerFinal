@@ -9,7 +9,7 @@
     </style>
 
     <!-- Base application theme. -->
-    <style name="SettingsActivityTheme" parent="Theme.AppCompat.Light">
+    <style name="SettingsActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/darkBlue</item>
         <item name="android:statusBarColor">@color/darkBlue</item>

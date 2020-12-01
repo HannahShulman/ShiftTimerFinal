@@ -44,7 +44,7 @@
     <string name="additional_hours_exp">שעתיים ראשונות לפי 125%, שעה שלישית ומעלה 150%</string>
     <string name="_200">200</string>
     <string name="_150">150</string>
-    <string name="shekel_per_month">ש"ח לחודש</string>
+    <string name="shekel_per_month">₪ לחודש</string>
     <string name="per_shift">למשמרת</string>
     <string name="per_month">לחודש</string>
     <string name="breaks_calculation_exp">זמן הפסקה לא יופחת ממשמרת של פחות מ-6 שעות</string>
@@ -58,6 +58,7 @@
     <string name="saturday_rate">תעריף שבת</string>
     <string name="sick_days">ימי מחלה</string>
     <string name="no_additional_workplaces">אין לך מקומות עבודה נוספים</string>
+    <string name="alert_no_parameter_entered">יש להכניס נתון</string>
 
     <string-array name="additional_hours_options">
         <item>לא לחשב</item>

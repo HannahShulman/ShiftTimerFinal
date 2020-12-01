@@ -8,11 +8,11 @@
     android:orientation="vertical"
     tools:context=".ui.SettingDetailActivity">
 
-    <Button
-        android:layout_margin="16dp"
-        android:transitionName="imageTransition"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
+<!--    <Button-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:transitionName="imageTransition"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp" />-->
 
     <FrameLayout
         android:id="@+id/fragment_container"

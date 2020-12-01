@@ -9,6 +9,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76e1655f018d2199feca9c237128500c/jetified-fragment-test-rule-extras-1.1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76e1655f018d2199feca9c237128500c/jetified-fragment-test-rule-extras-1.1.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76e1655f018d2199feca9c237128500c/jetified-fragment-test-rule-extras-1.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6e496d95ebd34c92b9ea5434afd5d23a/jetified-fragment-test-rule-extras-1.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6e496d95ebd34c92b9ea5434afd5d23a/jetified-fragment-test-rule-extras-1.1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6e496d95ebd34c92b9ea5434afd5d23a/jetified-fragment-test-rule-extras-1.1.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.21buttons/fragment-test-rule-extras/1.1.0/595836e822b875870b760852bcfe03a354a24cc8/fragment-test-rule-extras-1.1.0-javadoc.jar!/" />
